@@ -16,20 +16,17 @@ class Home extends React.Component {
 	};
 
 	render() {
-		const fullWidth = Dimensions.get('window').width;
-		const fullHeight = Dimensions.get('window').width;
 		return (
 			<ImageBackground
 				source={require('../assets/images/bg.png')}
-				style={[
-					{ flex: 1, resizeMode: 'cover', width: fullWidth, height: fullHeight }
-				]}
+				style={styles.bg}
 			>
 				<View style={styles.container}>
 					<View style={styles.top}>
 						<City />
 						<Filters />
 					</View>
+
 					<CardStack
 						loop={true}
 						verticalSwipe={false}
@@ -68,6 +65,12 @@ class Home extends React.Component {
 
 const styles = StyleSheet.create({
 	container: { marginHorizontal: 10 },
+	bg: {
+		flex: 1,
+		resizeMode: 'cover',
+		width: Dimensions.get('window').width,
+		height: Dimensions.get('window').height
+	},
 	top: {
 		paddingTop: 50,
 		marginHorizontal: 10,

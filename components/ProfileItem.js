@@ -5,46 +5,33 @@ class ProfileItem extends React.Component {
 	render() {
 		return (
 			<View style={styles.container}>
-				{this.props.matches ? (
-					<View style={styles.matches}>
-						<Text style={styles.matchesText}>
-							&#xe800; {this.props.matches}% Match!
-						</Text>
-					</View>
-				) : null}
-
-				<Text
-					style={[
-						{
-							paddingTop: 25,
-							paddingBottom: 5,
-							color: '#363636',
-							fontSize: 15,
-							textAlign: 'center'
-						}
-					]}
-				>
-					{this.props.name}
-				</Text>
-
-				<View>
-					<Text style={styles.description}>
-						{this.props.age} - {this.props.location}
+				<View style={styles.matches}>
+					<Text style={styles.matchesText}>
+						&#xe800; {this.props.matches}% Match!
 					</Text>
 				</View>
+
+				<Text style={styles.name}>{this.props.name}</Text>
+
+				<Text style={styles.description}>
+					{this.props.age} - {this.props.location}
+				</Text>
 
 				<View style={styles.info}>
 					<Text style={styles.icon}>&#xf061;</Text>
 					<Text style={styles.infoContent}>{this.props.info1}</Text>
 				</View>
+
 				<View style={styles.info}>
 					<Text style={styles.icon}>&#xf039;</Text>
 					<Text style={styles.infoContent}>{this.props.info2}</Text>
 				</View>
+
 				<View style={styles.info}>
 					<Text style={styles.icon}>&#xf029;</Text>
 					<Text style={styles.infoContent}>{this.props.info3}</Text>
 				</View>
+
 				<View style={styles.info}>
 					<Text style={styles.icon}>&#xf4c5;</Text>
 					<Text style={styles.infoContent}>{this.props.info4}</Text>
@@ -80,6 +67,13 @@ const styles = StyleSheet.create({
 	matchesText: {
 		fontFamily: 'tinderclone',
 		color: '#FFF'
+	},
+	name: {
+		paddingTop: 25,
+		paddingBottom: 5,
+		color: '#363636',
+		fontSize: 15,
+		textAlign: 'center'
 	},
 	description: {
 		color: '#757E90',

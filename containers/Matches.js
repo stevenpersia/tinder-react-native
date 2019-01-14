@@ -18,14 +18,10 @@ class Matches extends React.Component {
 	};
 
 	render() {
-		const fullWidth = Dimensions.get('window').width;
-		const fullHeight = Dimensions.get('window').width;
 		return (
 			<ImageBackground
 				source={require('../assets/images/bg.png')}
-				style={[
-					{ flex: 1, resizeMode: 'cover', width: fullWidth, height: fullHeight }
-				]}
+				style={styles.bg}
 			>
 				<View style={styles.container}>
 					<ScrollView>
@@ -35,6 +31,7 @@ class Matches extends React.Component {
 								<Text style={styles.icon}>&#xf142;</Text>
 							</TouchableOpacity>
 						</View>
+
 						<FlatList
 							numColumns={2}
 							data={Demo}
@@ -62,6 +59,12 @@ const styles = StyleSheet.create({
 		justifyContent: 'space-between',
 		flex: 1,
 		paddingHorizontal: 10
+	},
+	bg: {
+		flex: 1,
+		resizeMode: 'cover',
+		width: Dimensions.get('window').width,
+		height: Dimensions.get('window').height
 	},
 	top: {
 		paddingTop: 50,

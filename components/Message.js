@@ -5,20 +5,8 @@ class Message extends React.Component {
 	render() {
 		return (
 			<View style={styles.container}>
-				<View>
-					<Image
-						source={this.props.image}
-						style={[
-							{
-								borderRadius: 30,
-								width: 60,
-								height: 60,
-								marginRight: 20,
-								marginVertical: 15
-							}
-						]}
-					/>
-				</View>
+				<Image source={this.props.image} style={styles.avatar} />
+
 				<View style={styles.content}>
 					<Text>{this.props.name}</Text>
 					<Text style={styles.message}>{this.props.lastMessage}</Text>
@@ -36,6 +24,13 @@ const styles = StyleSheet.create({
 		flexDirection: 'row',
 		paddingHorizontal: 10,
 		width: Dimensions.get('window').width - 100
+	},
+	avatar: {
+		borderRadius: 30,
+		width: 60,
+		height: 60,
+		marginRight: 20,
+		marginVertical: 15
 	},
 	message: {
 		color: '#757E90',

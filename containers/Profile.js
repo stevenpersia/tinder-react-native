@@ -16,36 +16,26 @@ class Profile extends React.Component {
 		header: null
 	};
 	render() {
-		const fullWidth = Dimensions.get('window').width;
-		const fullHeight = Dimensions.get('window').width;
 		return (
 			<ImageBackground
 				source={require('../assets/images/bg.png')}
-				style={[
-					{ flex: 1, resizeMode: 'cover', width: fullWidth, height: fullHeight }
-				]}
+				style={styles.bg}
 			>
 				<ScrollView style={styles.container}>
-					<ImageBackground
-						source={Demo[7].image}
-						style={[
-							{
-								width: fullWidth,
-								height: 450
-							}
-						]}
-					>
+					<ImageBackground source={Demo[7].image} style={styles.photo}>
 						<View style={styles.top}>
 							<TouchableOpacity>
 								<Text style={styles.topIconLeft}>&#xf004;</Text>
 							</TouchableOpacity>
+
 							<TouchableOpacity>
 								<Text style={styles.topIconRight}>&#xf142;</Text>
 							</TouchableOpacity>
 						</View>
 					</ImageBackground>
+
 					<ProfileItem
-						matches="92"
+						matches={Demo[7].match}
 						name={Demo[7].name}
 						age={Demo[7].age}
 						location={Demo[7].location}
@@ -54,10 +44,12 @@ class Profile extends React.Component {
 						info3={Demo[7].info3}
 						info4={Demo[7].info4}
 					/>
+
 					<View style={styles.actions}>
 						<TouchableOpacity style={styles.circledButton}>
 							<Text style={styles.iconButton}>&#xf141;</Text>
 						</TouchableOpacity>
+
 						<TouchableOpacity style={styles.roundedButton}>
 							<Text style={styles.iconButton}>&#xf4ac;</Text>
 							<Text style={styles.textButton}>Start chatting</Text>
@@ -71,6 +63,16 @@ class Profile extends React.Component {
 
 const styles = StyleSheet.create({
 	container: { marginHorizontal: 0 },
+	bg: {
+		flex: 1,
+		resizeMode: 'cover',
+		width: Dimensions.get('window').width,
+		height: Dimensions.get('window').height
+	},
+	photo: {
+		width: Dimensions.get('window').width,
+		height: 450
+	},
 	top: {
 		paddingTop: 50,
 		marginHorizontal: 10,
