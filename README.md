@@ -58,21 +58,22 @@ This project works fine for iOS (for now, zero test has been done on android ver
 
 Clone this repository :
 
-```sh
+```bash
 git clone https://github.com/stevenpersia/tinder-react-native.git
 cd tinder-react-native
 ```
 
 Install packages :
 
-```sh
+```bash
 npm install
 ```
 
 When installation is complete, run with version of your choice :
 
-```sh
+```bash
 react-native run-ios
+# or
 react-native run-android
 ```
 
