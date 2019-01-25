@@ -60,6 +60,7 @@ Clone this repository :
 
 ```sh
 git clone https://github.com/stevenpersia/tinder-react-native.git
+cd tinder-react-native
 ```
 
 Install packages :
