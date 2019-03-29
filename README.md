@@ -17,7 +17,7 @@
 </p>
 
 <p align="center">
-	<img src="https://github.com/stevenpersia/tinder-react-native/blob/master/preview/tinderclone-preview.gif">
+	<img src="https://github.com/stevenpersia/tinder-react-native/blob/master/preview/tinderclone-preview.gif" width="300">
 </p>
 
 ## Overview
