@@ -1,35 +1,46 @@
 import { StyleSheet, Dimensions } from "react-native";
 
-const primaryColor = "#1d262a";
-const secondaryColor = "#CCC";
+const PRIMARY_COLOR = "#7444C0";
+const WHITE = "#FFFFFF";
+const GRAY = "#757E90";
+const DARK_GRAY = "#363636";
+const BLACK = "#000000";
+
+const ONLINE_STATUS = "46A575";
+const OFFLINE_STATUS = "D04949";
+
+const STAR_ACTIONS = "#FFA200";
+const LIKE_ACTIONS = "#B644B2";
+const DISLIKE_ACTIONS = "#363636";
+const FLASH_ACTIONS = "#5028D7";
+
+const ICON_FONT = "tinderclone";
 
 export default StyleSheet.create({
-	// GENERAL
-	container: {
-		backgroundColor: "#FFF",
+	// COMPONENT - CARD ITEM
+	containerCardItem: {
+		backgroundColor: WHITE,
 		borderRadius: 8,
 		alignItems: "center",
 		margin: 10,
 		shadowOpacity: 0.05,
 		shadowRadius: 10,
-		shadowColor: "#000",
+		shadowColor: BLACK,
 		shadowOffset: { height: 0, width: 0 }
 	},
-
-	// COMPONENT - CARD ITEM
-	matches: {
+	matchesCardItem: {
 		marginTop: -35,
-		backgroundColor: "#7444C0",
+		backgroundColor: PRIMARY_COLOR,
 		paddingVertical: 7,
 		paddingHorizontal: 20,
 		borderRadius: 20
 	},
-	matchesText: {
-		fontFamily: "tinderclone",
-		color: "#FFF"
+	matchesTextCardItem: {
+		fontFamily: ICON_FONT,
+		color: WHITE
 	},
-	description: {
-		color: "#757E90",
+	descriptionCardItem: {
+		color: GRAY,
 		textAlign: "center"
 	},
 	status: {
@@ -38,20 +49,20 @@ export default StyleSheet.create({
 		alignItems: "center"
 	},
 	statusText: {
-		color: "#757E90",
+		color: GRAY,
 		fontSize: 12
 	},
 	online: {
 		width: 6,
 		height: 6,
-		backgroundColor: "#46A575",
+		backgroundColor: ONLINE_STATUS,
 		borderRadius: 3,
 		marginRight: 4
 	},
 	offline: {
 		width: 6,
 		height: 6,
-		backgroundColor: "#D04949",
+		backgroundColor: OFFLINE_STATUS,
 		borderRadius: 3,
 		marginRight: 4
 	},
@@ -64,83 +75,83 @@ export default StyleSheet.create({
 		width: 60,
 		height: 60,
 		borderRadius: 30,
-		backgroundColor: "#FFF",
+		backgroundColor: WHITE,
 		marginHorizontal: 7,
 		alignItems: "center",
 		justifyContent: "center",
 		shadowOpacity: 0.15,
 		shadowRadius: 20,
-		shadowColor: "#363636",
+		shadowColor: DARK_GRAY,
 		shadowOffset: { height: 10, width: 0 }
 	},
 	miniButton: {
 		width: 40,
 		height: 40,
 		borderRadius: 30,
-		backgroundColor: "#FFF",
+		backgroundColor: WHITE,
 		marginHorizontal: 7,
 		alignItems: "center",
 		justifyContent: "center",
 		shadowOpacity: 0.15,
 		shadowRadius: 20,
-		shadowColor: "#363636",
+		shadowColor: DARK_GRAY,
 		shadowOffset: { height: 10, width: 0 }
 	},
 	star: {
-		fontFamily: "tinderclone",
-		color: "#FFA200"
+		fontFamily: ICON_FONT,
+		color: STAR_ACTIONS
 	},
 	like: {
-		fontFamily: "tinderclone",
 		fontSize: 25,
-		color: "#B644B2"
+		fontFamily: ICON_FONT,
+		color: LIKE_ACTIONS
 	},
 	dislike: {
-		fontFamily: "tinderclone",
 		fontSize: 25,
-		color: "#363636"
+		fontFamily: ICON_FONT,
+		color: DISLIKE_ACTIONS
 	},
 	flash: {
-		fontFamily: "tinderclone",
-		color: "#5028D7"
+		fontFamily: ICON_FONT,
+		color: FLASH_ACTIONS
 	},
 
 	// COMPONENT - CITY
 	city: {
-		backgroundColor: "#FFF",
+		backgroundColor: WHITE,
 		padding: 10,
 		borderRadius: 20,
 		width: 90,
 		shadowOpacity: 0.05,
 		shadowRadius: 10,
-		shadowColor: "#000",
+		shadowColor: BLACK,
 		shadowOffset: { height: 0, width: 0 }
 	},
 	cityText: {
-		fontFamily: "tinderclone",
-		color: "#363636",
+		fontFamily: ICON_FONT,
+		color: DARK_GRAY,
 		fontSize: 13
 	},
 
 	// COMPONENT - FILTERS
 	filters: {
-		backgroundColor: "#FFF",
+		backgroundColor: WHITE,
 		padding: 10,
 		borderRadius: 20,
 		width: 70,
 		shadowOpacity: 0.05,
 		shadowRadius: 10,
-		shadowColor: "#000",
+		shadowColor: BLACK,
 		shadowOffset: { height: 0, width: 0 }
 	},
 	filtersText: {
-		fontFamily: "tinderclone",
-		color: "#363636",
+		fontFamily: ICON_FONT,
+		color: DARK_GRAY,
 		fontSize: 13
 	},
 
 	// COMPONENT - MESSAGE
-	container: {
+	containerMessage: {
 		flex: 1,
 		alignItems: "center",
 		justifyContent: "flex-start",
@@ -156,14 +167,14 @@ export default StyleSheet.create({
 		marginVertical: 15
 	},
 	message: {
-		color: "#757E90",
+		color: GRAY,
 		fontSize: 12,
 		paddingTop: 5
 	},
 
 	// COMPONENT - PROFILE ITEM
-	container: {
-		backgroundColor: "#FFF",
+	containerProfileItem: {
+		backgroundColor: WHITE,
 		paddingHorizontal: 10,
 		paddingBottom: 25,
 		margin: 20,
@@ -171,32 +182,32 @@ export default StyleSheet.create({
 		marginTop: -65,
 		shadowOpacity: 0.05,
 		shadowRadius: 10,
-		shadowColor: "#000",
+		shadowColor: BLACK,
 		shadowOffset: { height: 0, width: 0 }
 	},
-	matches: {
+	matchesProfileItem: {
 		width: 131,
 		marginTop: -15,
-		backgroundColor: "#7444C0",
+		backgroundColor: PRIMARY_COLOR,
 		paddingVertical: 7,
 		paddingHorizontal: 20,
 		borderRadius: 20,
 		textAlign: "center",
 		alignSelf: "center"
 	},
-	matchesText: {
-		fontFamily: "tinderclone",
-		color: "#FFF"
+	matchesTextProfileItem: {
+		fontFamily: ICON_FONT,
+		color: WHITE
 	},
 	name: {
 		paddingTop: 25,
 		paddingBottom: 5,
-		color: "#363636",
+		color: DARK_GRAY,
 		fontSize: 15,
 		textAlign: "center"
 	},
-	description: {
-		color: "#757E90",
+	descriptionProfileItem: {
+		color: GRAY,
 		textAlign: "center",
 		paddingBottom: 20,
 		fontSize: 13
@@ -207,13 +218,13 @@ export default StyleSheet.create({
 		alignItems: "center"
 	},
 	icon: {
-		fontFamily: "tinderclone",
+		fontFamily: ICON_FONT,
 		fontSize: 12,
-		color: "#363636",
+		color: DARK_GRAY,
 		paddingHorizontal: 10
 	},
 	infoContent: {
-		color: "#757E90",
+		color: GRAY,
 		fontSize: 13
 	}
 });

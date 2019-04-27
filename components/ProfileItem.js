@@ -21,16 +21,16 @@ const ProfileItem = ({
 	const CALENDAR_ICON = "&#xf4c5;";
 
 	return (
-		<View style={styles.container}>
-			<View style={styles.matches}>
-				<Text style={styles.matchesText}>
+		<View style={styles.containerProfileItem}>
+			<View style={styles.matchesProfileItem}>
+				<Text style={styles.matchesTextProfileItem}>
 					{HEADER_ICON} {matches}% Match!
 				</Text>
 			</View>
 
 			<Text style={styles.name}>{name}</Text>
 
-			<Text style={styles.description}>
+			<Text style={styles.descriptionProfileItem}>
 				{age} - {location}
 			</Text>
 

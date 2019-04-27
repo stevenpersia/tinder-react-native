@@ -42,14 +42,14 @@ const CardItem = ({
 	];
 
 	return (
-		<View style={styles.container}>
+		<View style={styles.containerCardItem}>
 			{/* IMAGE */}
 			<Image source={image} style={imageStyle} />
 
 			{/* MATCHES */}
 			{matches && (
-				<View style={styles.matches}>
-					<Text style={styles.matchesText}>
+				<View style={styles.matchesCardItem}>
+					<Text style={styles.matchesTextCardItem}>
 						{HEART_ICON} {matches}% Match!
 					</Text>
 				</View>
@@ -59,7 +59,9 @@ const CardItem = ({
 			<Text style={nameStyle}>{name}</Text>
 
 			{/* DESCRIPTION */}
-			{description && <Text style={styles.description}>{description}</Text>}
+			{description && (
+				<Text style={styles.descriptionCardItem}>{description}</Text>
+			)}
 
 			{/* STATUS */}
 			{status && (
