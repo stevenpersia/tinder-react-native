@@ -1,5 +1,7 @@
 import React from "react";
-import { StyleSheet, Text, View } from "react-native";
+import styles from "../assets/styles";
+
+import { Text, View } from "react-native";
 
 const ProfileItem = ({
 	age,
@@ -45,62 +47,5 @@ const ProfileItem = ({
 		</View>
 	);
 };
-
-const styles = StyleSheet.create({
-	container: {
-		backgroundColor: "#FFF",
-		paddingHorizontal: 10,
-		paddingBottom: 25,
-		margin: 20,
-		borderRadius: 8,
-		marginTop: -65,
-		shadowOpacity: 0.05,
-		shadowRadius: 10,
-		shadowColor: "#000",
-		shadowOffset: { height: 0, width: 0 }
-	},
-	matches: {
-		width: 131,
-		marginTop: -15,
-		backgroundColor: "#7444C0",
-		paddingVertical: 7,
-		paddingHorizontal: 20,
-		borderRadius: 20,
-		textAlign: "center",
-		alignSelf: "center"
-	},
-	matchesText: {
-		fontFamily: "tinderclone",
-		color: "#FFF"
-	},
-	name: {
-		paddingTop: 25,
-		paddingBottom: 5,
-		color: "#363636",
-		fontSize: 15,
-		textAlign: "center"
-	},
-	description: {
-		color: "#757E90",
-		textAlign: "center",
-		paddingBottom: 20,
-		fontSize: 13
-	},
-	info: {
-		paddingVertical: 8,
-		flexDirection: "row",
-		alignItems: "center"
-	},
-	icon: {
-		fontFamily: "tinderclone",
-		fontSize: 12,
-		color: "#363636",
-		paddingHorizontal: 10
-	},
-	infoContent: {
-		color: "#757E90",
-		fontSize: 13
-	}
-});
 
 export default ProfileItem;
