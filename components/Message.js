@@ -1,7 +1,7 @@
 import React from "react";
 import styles from "../assets/styles";
 
-import { Text, View, Image, Dimensions } from "react-native";
+import { Text, View, Image } from "react-native";
 
 const Message = ({ image, lastMessage, name }) => {
 	return (

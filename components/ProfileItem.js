@@ -13,10 +13,19 @@ const ProfileItem = ({
 	matches,
 	name
 }) => {
+	// Fonts
+	const HEADER_ICON = "&#xe800;";
+	const USER_ICON = "&#xf061;";
+	const CIRCLE_ICON = "&#xf039;";
+	const HASHTAG_ICON = "&#xf029;";
+	const CALENDAR_ICON = "&#xf4c5;";
+
 	return (
 		<View style={styles.container}>
 			<View style={styles.matches}>
-				<Text style={styles.matchesText}>&#xe800; {matches}% Match!</Text>
+				<Text style={styles.matchesText}>
+					{HEADER_ICON} {matches}% Match!
+				</Text>
 			</View>
 
 			<Text style={styles.name}>{name}</Text>
@@ -26,22 +35,22 @@ const ProfileItem = ({
 			</Text>
 
 			<View style={styles.info}>
-				<Text style={styles.icon}>&#xf061;</Text>
+				<Text style={styles.icon}>{USER_ICON}</Text>
 				<Text style={styles.infoContent}>{info1}</Text>
 			</View>
 
 			<View style={styles.info}>
-				<Text style={styles.icon}>&#xf039;</Text>
+				<Text style={styles.icon}>{CIRCLE_ICON}</Text>
 				<Text style={styles.infoContent}>{info2}</Text>
 			</View>
 
 			<View style={styles.info}>
-				<Text style={styles.icon}>&#xf029;</Text>
+				<Text style={styles.icon}>{HASHTAG_ICON}</Text>
 				<Text style={styles.infoContent}>{info3}</Text>
 			</View>
 
 			<View style={styles.info}>
-				<Text style={styles.icon}>&#xf4c5;</Text>
+				<Text style={styles.icon}>{CALENDAR_ICON}</Text>
 				<Text style={styles.infoContent}>{info4}</Text>
 			</View>
 		</View>

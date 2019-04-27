@@ -14,52 +14,6 @@ const CardItem = ({
 	status,
 	variant
 }) => {
-	return (
-		<View style={styles.container}>
-			<Image source={image} style={imageStyle} />
-
-			{matches && (
-				<View style={styles.matches}>
-					<Text style={styles.matchesText}>
-						{HEART_ICON} {matches}% Match!
-					</Text>
-				</View>
-			)}
-
-			<Text style={nameStyle}>{name}</Text>
-
-			{description && <Text style={styles.description}>{description}</Text>}
-
-			<View style={styles.status}>
-				<View style={status === "Online" ? styles.online : styles.offline} />
-				<Text style={styles.statusText}>{status}</Text>
-			</View>
-
-			{actions && (
-				<View style={styles.actions}>
-					<TouchableOpacity style={styles.miniButton}>
-						<Text style={styles.star}>{STAR_ICON}</Text>
-					</TouchableOpacity>
-
-					<TouchableOpacity style={styles.button} onPress={() => onPressLeft()}>
-						<Text style={styles.like}>{LIKE_ICON}</Text>
-					</TouchableOpacity>
-
-					<TouchableOpacity
-						style={styles.button}
-						onPress={() => onPressRight()}
-					>
-						<Text style={styles.dislike}>{DISLIKE_ICON}</Text>
-					</TouchableOpacity>
-
-					<TouchableOpacity style={styles.miniButton}>
-						<Text style={styles.flash}>{FLASH_ICON}</Text>
-					</TouchableOpacity>
-				</View>
-			)}
-		</View>
-	);
-
 	// Fonts
 	const HEART_ICON = "&#xe800;";
 	const STAR_ICON = "&#xe801;";
@@ -86,6 +40,60 @@ const CardItem = ({
 			fontSize: variant ? 15 : 30
 		}
 	];
+
+	return (
+		<View style={styles.container}>
+			{/* IMAGE */}
+			<Image source={image} style={imageStyle} />
+
+			{/* MATCHES */}
+			{matches && (
+				<View style={styles.matches}>
+					<Text style={styles.matchesText}>
+						{HEART_ICON} {matches}% Match!
+					</Text>
+				</View>
+			)}
+
+			{/* NAME */}
+			<Text style={nameStyle}>{name}</Text>
+
+			{/* DESCRIPTION */}
+			{description && <Text style={styles.description}>{description}</Text>}
+
+			{/* STATUS */}
+			{status && (
+				<View style={styles.status}>
+					<View style={status === "Online" ? styles.online : styles.offline} />
+					<Text style={styles.statusText}>{status}</Text>
+				</View>
+			)}
+
+			{/* ACTIONS */}
+			{actions && (
+				<View style={styles.actions}>
+					<TouchableOpacity style={styles.miniButton}>
+						<Text style={styles.star}>{STAR_ICON}</Text>
+					</TouchableOpacity>
+
+					<TouchableOpacity style={styles.button} onPress={() => onPressLeft()}>
+						<Text style={styles.like}>{LIKE_ICON}</Text>
+					</TouchableOpacity>
+
+					<TouchableOpacity
+						style={styles.button}
+						onPress={() => onPressRight()}
+					>
+						<Text style={styles.dislike}>{DISLIKE_ICON}</Text>
+					</TouchableOpacity>
+
+					<TouchableOpacity style={styles.miniButton}>
+						<Text style={styles.flash}>{FLASH_ICON}</Text>
+					</TouchableOpacity>
+				</View>
+			)}
+		</View>
+	);
 };
 
 export default CardItem;
