@@ -29,28 +29,28 @@ const ProfileItem = ({
 			</Text>
 
 			<View style={styles.info}>
-				<Text style={styles.icon}>
+				<Text style={styles.iconProfile}>
 					<Icon name="user" />
 				</Text>
 				<Text style={styles.infoContent}>{info1}</Text>
 			</View>
 
 			<View style={styles.info}>
-				<Text style={styles.icon}>
+				<Text style={styles.iconProfile}>
 					<Icon name="circle" />
 				</Text>
 				<Text style={styles.infoContent}>{info2}</Text>
 			</View>
 
 			<View style={styles.info}>
-				<Text style={styles.icon}>
+				<Text style={styles.iconProfile}>
 					<Icon name="hashtag" />
 				</Text>
 				<Text style={styles.infoContent}>{info3}</Text>
 			</View>
 
 			<View style={styles.info}>
-				<Text style={styles.icon}>
+				<Text style={styles.iconProfile}>
 					<Icon name="calendar" />
 				</Text>
 				<Text style={styles.infoContent}>{info4}</Text>

@@ -1,11 +1,11 @@
 import React from "react";
+import styles from "../assets/styles";
+
 import {
-	StyleSheet,
 	ScrollView,
 	View,
 	Text,
 	ImageBackground,
-	Dimensions,
 	TouchableOpacity
 } from "react-native";
 import ProfileItem from "../components/ProfileItem";
@@ -30,7 +30,7 @@ const Profile = () => {
 			source={require("../assets/images/bg.png")}
 			style={styles.bg}
 		>
-			<ScrollView style={styles.container}>
+			<ScrollView style={styles.containerProfile}>
 				<ImageBackground source={image} style={styles.photo}>
 					<View style={styles.top}>
 						<TouchableOpacity>
@@ -58,7 +58,7 @@ const Profile = () => {
 					info4={info4}
 				/>
 
-				<View style={styles.actions}>
+				<View style={styles.actionsProfile}>
 					<TouchableOpacity style={styles.circledButton}>
 						<Text style={styles.iconButton}>
 							<Icon name="optionsH" />
@@ -76,71 +76,5 @@ const Profile = () => {
 		</ImageBackground>
 	);
 };
-
-const styles = StyleSheet.create({
-	container: { marginHorizontal: 0 },
-	bg: {
-		flex: 1,
-		resizeMode: "cover",
-		width: Dimensions.get("window").width,
-		height: Dimensions.get("window").height
-	},
-	photo: {
-		width: Dimensions.get("window").width,
-		height: 450
-	},
-	top: {
-		paddingTop: 50,
-		marginHorizontal: 10,
-		flexDirection: "row",
-		justifyContent: "space-between",
-		alignItems: "center"
-	},
-	topIconLeft: {
-		fontFamily: "tinderclone",
-		fontSize: 20,
-		color: "#FFF",
-		paddingLeft: 20,
-		marginTop: -20,
-		transform: [{ rotate: "90deg" }]
-	},
-	topIconRight: {
-		fontFamily: "tinderclone",
-		fontSize: 20,
-		color: "#FFF",
-		paddingRight: 20
-	},
-	actions: {
-		justifyContent: "center",
-		flexDirection: "row",
-		alignItems: "center"
-	},
-	iconButton: { fontFamily: "tinderclone", fontSize: 20, color: "#FFF" },
-	textButton: {
-		fontFamily: "tinderclone",
-		fontSize: 15,
-		color: "#FFF",
-		paddingLeft: 5
-	},
-	circledButton: {
-		width: 50,
-		height: 50,
-		borderRadius: 25,
-		backgroundColor: "#7444C0",
-		justifyContent: "center",
-		alignItems: "center",
-		marginRight: 10
-	},
-	roundedButton: {
-		justifyContent: "center",
-		flexDirection: "row",
-		alignItems: "center",
-		marginLeft: 10,
-		height: 50,
-		borderRadius: 25,
-		backgroundColor: "#5636B8",
-		paddingHorizontal: 20
-	}
-});
 
 export default Profile;

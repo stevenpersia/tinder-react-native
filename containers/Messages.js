@@ -1,11 +1,11 @@
 import React from "react";
+import styles from "../assets/styles";
+
 import {
-	StyleSheet,
 	ScrollView,
 	Text,
 	TouchableOpacity,
 	ImageBackground,
-	Dimensions,
 	View,
 	FlatList
 } from "react-native";
@@ -19,7 +19,7 @@ const Messages = () => {
 			source={require("../assets/images/bg.png")}
 			style={styles.bg}
 		>
-			<View style={styles.container}>
+			<View style={styles.containerMessages}>
 				<ScrollView>
 					<View style={styles.top}>
 						<Text style={styles.title}>Messages</Text>
@@ -48,33 +48,5 @@ const Messages = () => {
 		</ImageBackground>
 	);
 };
-
-const styles = StyleSheet.create({
-	container: {
-		justifyContent: "space-between",
-		flex: 1,
-		paddingHorizontal: 10
-	},
-	bg: {
-		flex: 1,
-		resizeMode: "cover",
-		width: Dimensions.get("window").width,
-		height: Dimensions.get("window").height
-	},
-	top: {
-		paddingTop: 50,
-		marginHorizontal: 10,
-		flexDirection: "row",
-		justifyContent: "space-between",
-		alignItems: "center"
-	},
-	title: { paddingBottom: 10, fontSize: 22, color: "#363636" },
-	icon: {
-		fontFamily: "tinderclone",
-		fontSize: 20,
-		color: "#363636",
-		paddingRight: 10
-	}
-});
 
 export default Messages;
