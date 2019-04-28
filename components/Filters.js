@@ -1,32 +1,17 @@
-import React from 'react';
-import { StyleSheet, Text, TouchableOpacity } from 'react-native';
+import React from "react";
+import styles from "../assets/styles";
 
-class Filters extends React.Component {
-	render() {
-		return (
-			<TouchableOpacity style={styles.filters}>
-				<Text style={styles.filtersText}>&#xf0b0; Filters</Text>
-			</TouchableOpacity>
-		);
-	}
-}
+import { Text, TouchableOpacity } from "react-native";
+import Icon from "./Icon";
 
-const styles = StyleSheet.create({
-	filters: {
-		backgroundColor: '#FFF',
-		padding: 10,
-		borderRadius: 20,
-		width: 70,
-		shadowOpacity: 0.05,
-		shadowRadius: 10,
-		shadowColor: '#000',
-		shadowOffset: { height: 0, width: 0 }
-	},
-	filtersText: {
-		fontFamily: 'tinderclone',
-		color: '#363636',
-		fontSize: 13
-	}
-});
+const Filters = () => {
+	return (
+		<TouchableOpacity style={styles.filters}>
+			<Text style={styles.filtersText}>
+				<Icon name="filter" /> Filters
+			</Text>
+		</TouchableOpacity>
+	);
+};
 
 export default Filters;

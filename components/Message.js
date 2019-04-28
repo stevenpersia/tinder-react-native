@@ -1,42 +1,18 @@
-import React from 'react';
-import { StyleSheet, Text, View, Image, Dimensions } from 'react-native';
+import React from "react";
+import styles from "../assets/styles";
 
-class Message extends React.Component {
-	render() {
-		return (
-			<View style={styles.container}>
-				<Image source={this.props.image} style={styles.avatar} />
+import { Text, View, Image } from "react-native";
 
-				<View style={styles.content}>
-					<Text>{this.props.name}</Text>
-					<Text style={styles.message}>{this.props.lastMessage}</Text>
-				</View>
+const Message = ({ image, lastMessage, name }) => {
+	return (
+		<View style={styles.containerMessage}>
+			<Image source={image} style={styles.avatar} />
+			<View style={styles.content}>
+				<Text>{name}</Text>
+				<Text style={styles.message}>{lastMessage}</Text>
 			</View>
-		);
-	}
-}
-
-const styles = StyleSheet.create({
-	container: {
-		flex: 1,
-		alignItems: 'center',
-		justifyContent: 'flex-start',
-		flexDirection: 'row',
-		paddingHorizontal: 10,
-		width: Dimensions.get('window').width - 100
-	},
-	avatar: {
-		borderRadius: 30,
-		width: 60,
-		height: 60,
-		marginRight: 20,
-		marginVertical: 15
-	},
-	message: {
-		color: '#757E90',
-		fontSize: 12,
-		paddingTop: 5
-	}
-});
+		</View>
+	);
+};
 
 export default Message;

@@ -1,6 +1,10 @@
 {
-	"name": "tinderReact",
-	"version": "0.0.1",
+	"name": "tinder-react-native",
+	"description": "Tinder React Native clone",
+	"version": "0.2.0",
+	"author": "Steven Persia",
+	"licence": "MIT",
+	"homepage": "https://github.com/stevenpersia/tinder-react-native",
 	"private": true,
 	"scripts": {
 		"start": "node node_modules/react-native/local-cli/cli.js start",
