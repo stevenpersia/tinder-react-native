@@ -2,14 +2,14 @@ import React from "react";
 import styles from "../assets/styles";
 
 import { Text, TouchableOpacity } from "react-native";
+import Icon from "./Icon";
 
 const Filters = () => {
-	// Fonts
-	const FILTER_ICON = "&#xf0b0;";
-
 	return (
 		<TouchableOpacity style={styles.filters}>
-			<Text style={styles.filtersText}>{FILTER_ICON} Filters</Text>
+			<Text style={styles.filtersText}>
+				<Icon name="filter" /> Filters
+			</Text>
 		</TouchableOpacity>
 	);
 };

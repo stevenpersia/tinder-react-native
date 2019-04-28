@@ -2,6 +2,7 @@ import React from "react";
 import styles from "../assets/styles";
 
 import { Text, View } from "react-native";
+import Icon from "./Icon";
 
 const ProfileItem = ({
 	age,
@@ -13,18 +14,11 @@ const ProfileItem = ({
 	matches,
 	name
 }) => {
-	// Fonts
-	const HEADER_ICON = "&#xe800;";
-	const USER_ICON = "&#xf061;";
-	const CIRCLE_ICON = "&#xf039;";
-	const HASHTAG_ICON = "&#xf029;";
-	const CALENDAR_ICON = "&#xf4c5;";
-
 	return (
 		<View style={styles.containerProfileItem}>
 			<View style={styles.matchesProfileItem}>
 				<Text style={styles.matchesTextProfileItem}>
-					{HEADER_ICON} {matches}% Match!
+					<Icon name="heart" /> {matches}% Match!
 				</Text>
 			</View>
 
@@ -35,22 +29,30 @@ const ProfileItem = ({
 			</Text>
 
 			<View style={styles.info}>
-				<Text style={styles.icon}>{USER_ICON}</Text>
+				<Text style={styles.icon}>
+					<Icon name="user" />
+				</Text>
 				<Text style={styles.infoContent}>{info1}</Text>
 			</View>
 
 			<View style={styles.info}>
-				<Text style={styles.icon}>{CIRCLE_ICON}</Text>
+				<Text style={styles.icon}>
+					<Icon name="circle" />
+				</Text>
 				<Text style={styles.infoContent}>{info2}</Text>
 			</View>
 
 			<View style={styles.info}>
-				<Text style={styles.icon}>{HASHTAG_ICON}</Text>
+				<Text style={styles.icon}>
+					<Icon name="hashtag" />
+				</Text>
 				<Text style={styles.infoContent}>{info3}</Text>
 			</View>
 
 			<View style={styles.info}>
-				<Text style={styles.icon}>{CALENDAR_ICON}</Text>
+				<Text style={styles.icon}>
+					<Icon name="calendar" />
+				</Text>
 				<Text style={styles.infoContent}>{info4}</Text>
 			</View>
 		</View>

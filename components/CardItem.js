@@ -2,6 +2,7 @@ import React from "react";
 import styles from "../assets/styles";
 
 import { Text, View, Image, Dimensions, TouchableOpacity } from "react-native";
+import Icon from "./Icon";
 
 const CardItem = ({
 	actions,
@@ -14,13 +15,6 @@ const CardItem = ({
 	status,
 	variant
 }) => {
-	// Fonts
-	const HEART_ICON = "&#xe800;";
-	const STAR_ICON = "&#xe801;";
-	const LIKE_ICON = "&#xe800;";
-	const DISLIKE_ICON = "&#xe802;";
-	const FLASH_ICON = "&#xe803;";
-
 	// Custom styling
 	const fullWidth = Dimensions.get("window").width;
 	const imageStyle = [
@@ -50,7 +44,7 @@ const CardItem = ({
 			{matches && (
 				<View style={styles.matchesCardItem}>
 					<Text style={styles.matchesTextCardItem}>
-						{HEART_ICON} {matches}% Match!
+						<Icon name="heart" /> {matches}% Match!
 					</Text>
 				</View>
 			)}
@@ -75,22 +69,30 @@ const CardItem = ({
 			{actions && (
 				<View style={styles.actions}>
 					<TouchableOpacity style={styles.miniButton}>
-						<Text style={styles.star}>{STAR_ICON}</Text>
+						<Text style={styles.star}>
+							<Icon name="star" />
+						</Text>
 					</TouchableOpacity>
 
 					<TouchableOpacity style={styles.button} onPress={() => onPressLeft()}>
-						<Text style={styles.like}>{LIKE_ICON}</Text>
+						<Text style={styles.like}>
+							<Icon name="like" />
+						</Text>
 					</TouchableOpacity>
 
 					<TouchableOpacity
 						style={styles.button}
 						onPress={() => onPressRight()}
 					>
-						<Text style={styles.dislike}>{DISLIKE_ICON}</Text>
+						<Text style={styles.dislike}>
+							<Icon name="dislike" />
+						</Text>
 					</TouchableOpacity>
 
 					<TouchableOpacity style={styles.miniButton}>
-						<Text style={styles.flash}>{FLASH_ICON}</Text>
+						<Text style={styles.flash}>
+							<Icon name="flash" />
+						</Text>
 					</TouchableOpacity>
 				</View>
 			)}

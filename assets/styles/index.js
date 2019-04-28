@@ -6,8 +6,8 @@ const GRAY = "#757E90";
 const DARK_GRAY = "#363636";
 const BLACK = "#000000";
 
-const ONLINE_STATUS = "46A575";
-const OFFLINE_STATUS = "D04949";
+const ONLINE_STATUS = "#46A575";
+const OFFLINE_STATUS = "#D04949";
 
 const STAR_ACTIONS = "#FFA200";
 const LIKE_ACTIONS = "#B644B2";
