@@ -226,5 +226,22 @@ export default StyleSheet.create({
 	infoContent: {
 		color: GRAY,
 		fontSize: 13
+	},
+
+	// MENU
+	tabButton: {
+		paddingTop: 20,
+		paddingBottom: 30,
+		alignItems: "center",
+		justifyContent: "center",
+		flex: 1
+	},
+	tabButtonText: {
+		textTransform: "uppercase"
+	},
+	iconMenu: {
+		fontFamily: ICON_FONT,
+		height: 20,
+		paddingBottom: 7
 	}
 });

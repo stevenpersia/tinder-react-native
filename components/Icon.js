@@ -16,14 +16,15 @@ const Icon = ({ name }) => {
 		chevronLeft: "&#xf004;",
 		optionsV: "&#xf142;",
 		optionsH: "&#xf141;",
-		chat: "&#xf4ac;"
+		chat: "&#xf4ac;",
+		explore: "&#xf50d;"
 	};
 
 	let icon = iconsList[name];
 	icon = icon.substr(3);
 	icon = String.fromCharCode(parseInt(icon, 16));
 
-	return <>{icon}</>;
+	return icon;
 };
 
 export default Icon;
