@@ -13,49 +13,43 @@ import CardItem from "../components/CardItem";
 import Icon from "../components/Icon";
 import Demo from "../assets/data/demo.js";
 
-class Matches extends React.Component {
-	static navigationOptions = {
-		header: null
-	};
+const Matches = () => {
+	return (
+		<ImageBackground
+			source={require("../assets/images/bg.png")}
+			style={styles.bg}
+		>
+			<View style={styles.container}>
+				<ScrollView>
+					<View style={styles.top}>
+						<Text style={styles.title}>Matches</Text>
+						<TouchableOpacity>
+							<Text style={styles.icon}>
+								<Icon name="optionsV" />
+							</Text>
+						</TouchableOpacity>
+					</View>
 
-	render() {
-		return (
-			<ImageBackground
-				source={require("../assets/images/bg.png")}
-				style={styles.bg}
-			>
-				<View style={styles.container}>
-					<ScrollView>
-						<View style={styles.top}>
-							<Text style={styles.title}>Matches</Text>
+					<FlatList
+						numColumns={2}
+						data={Demo}
+						keyExtractor={(item, index) => index.toString()}
+						renderItem={({ item }) => (
 							<TouchableOpacity>
-								<Text style={styles.icon}>
-									<Icon name="optionsV" />
-								</Text>
+								<CardItem
+									image={item.image}
+									name={item.name}
+									status={item.status}
+									variant
+								/>
 							</TouchableOpacity>
-						</View>
-
-						<FlatList
-							numColumns={2}
-							data={Demo}
-							renderItem={({ item }) => (
-								<TouchableOpacity>
-									<CardItem
-										image={item.image}
-										name={item.name}
-										status={item.status}
-										variant
-									/>
-								</TouchableOpacity>
-							)}
-							keyExtractor={(item, index) => index.toString()}
-						/>
-					</ScrollView>
-				</View>
-			</ImageBackground>
-		);
-	}
-}
+						)}
+					/>
+				</ScrollView>
+			</View>
+		</ImageBackground>
+	);
+};
 
 const styles = StyleSheet.create({
 	container: {
