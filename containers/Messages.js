@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 import {
 	StyleSheet,
 	ScrollView,
@@ -8,9 +8,10 @@ import {
 	Dimensions,
 	View,
 	FlatList
-} from 'react-native';
-import Message from '../components/Message';
-import Demo from '../assets/data/demo.js';
+} from "react-native";
+import Message from "../components/Message";
+import Icon from "../components/Icon";
+import Demo from "../assets/data/demo.js";
 
 class Messages extends React.Component {
 	static navigationOptions = {
@@ -19,7 +20,7 @@ class Messages extends React.Component {
 	render() {
 		return (
 			<ImageBackground
-				source={require('../assets/images/bg.png')}
+				source={require("../assets/images/bg.png")}
 				style={styles.bg}
 			>
 				<View style={styles.container}>
@@ -27,7 +28,9 @@ class Messages extends React.Component {
 						<View style={styles.top}>
 							<Text style={styles.title}>Messages</Text>
 							<TouchableOpacity>
-								<Text style={styles.icon}>&#xf142;</Text>
+								<Text style={styles.icon}>
+									<Icon name="optionsV" />
+								</Text>
 							</TouchableOpacity>
 						</View>
 
@@ -53,28 +56,28 @@ class Messages extends React.Component {
 
 const styles = StyleSheet.create({
 	container: {
-		justifyContent: 'space-between',
+		justifyContent: "space-between",
 		flex: 1,
 		paddingHorizontal: 10
 	},
 	bg: {
 		flex: 1,
-		resizeMode: 'cover',
-		width: Dimensions.get('window').width,
-		height: Dimensions.get('window').height
+		resizeMode: "cover",
+		width: Dimensions.get("window").width,
+		height: Dimensions.get("window").height
 	},
 	top: {
 		paddingTop: 50,
 		marginHorizontal: 10,
-		flexDirection: 'row',
-		justifyContent: 'space-between',
-		alignItems: 'center'
+		flexDirection: "row",
+		justifyContent: "space-between",
+		alignItems: "center"
 	},
-	title: { paddingBottom: 10, fontSize: 22, color: '#363636' },
+	title: { paddingBottom: 10, fontSize: 22, color: "#363636" },
 	icon: {
-		fontFamily: 'tinderclone',
+		fontFamily: "tinderclone",
 		fontSize: 20,
-		color: '#363636',
+		color: "#363636",
 		paddingRight: 10
 	}
 });

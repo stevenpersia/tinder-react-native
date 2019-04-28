@@ -12,7 +12,11 @@ const Icon = ({ name }) => {
 		user: "&#xf061;",
 		circle: "&#xf039;",
 		hashtag: "&#xf029;",
-		calendar: "&#xf4c5;"
+		calendar: "&#xf4c5;",
+		chevronLeft: "&#xf004;",
+		optionsV: "&#xf142;",
+		optionsH: "&#xf141;",
+		chat: "&#xf4ac;"
 	};
 
 	let icon = iconsList[name];
