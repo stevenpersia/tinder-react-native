@@ -60,7 +60,7 @@ This project works fine for iOS (for now, zero test has been done on android ver
 Clone this repository :
 
 ```
-git clone https://github.com/stevenpersia/tinder-react-native.git
+git clone https://github.com/justinaSavickaite/tinder-react-native.git
 cd tinder-react-native
 ```
 
