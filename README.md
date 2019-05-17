@@ -60,8 +60,8 @@ This project works fine for iOS (for now, zero test has been done on android ver
 Clone this repository :
 
 ```
-git clone https://github.com/justinaSavickaite/tinder-react-native.git
-cd tinder-react-native
+git clone https://github.com/justinaSavickaite/sourcery-mobile-testing.git
+cd sourcery-mobile-testing
 ```
 
 Install packages :
