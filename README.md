@@ -52,7 +52,7 @@ This project was inspired by this [amazing Kishore's work on Dribbble](https://d
 
 Be sure, you have installed all dependencies and applications to run React Native project on your computer : [Getting Started with React Native](https://facebook.github.io/react-native/docs/getting-started).
 
-This project works fine for iOS (for now, zero test has been done on android version).
+This project works fine for iOS but in Android version there are serious UI problems because I've only worked on iOS.
 
 
 ### Running the project
