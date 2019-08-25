@@ -130,9 +130,8 @@ Thanks goes to these wonderful people :
 <!-- prettier-ignore -->
 <table>
   <tr>
+<td align="center"><a href="http://Skibudsapp.com"><img src="https://avatars3.githubusercontent.com/u/25047763?v=4" width="100px;" alt="Stephen Phillips"/><br /><sub><b>Stephen Phillips</b></sub></a><br /><a href="#question-Sbphillips19" title="Answering Questions">💬</a></td>
 <td align="center"><a href="https://github.com/anand9"><img src="https://avatars3.githubusercontent.com/u/638590?v=4" width="100px;" alt="Anand Vasudevan "/><br /><sub><b>Anand Vasudevan </b></sub></a><br /><a href="https://github.com/stevenpersia/tinder-react-native/commits?author=anand9" title="Code">💻</a></td>
-    <td align="center"><a href="https://github.com/anand9"><img src="https://avatars3.githubusercontent.com/u/638590?v=4" width="100px;" alt="Anand Vasudevan "/><br /><sub><b>Anand Vasudevan </b></sub></a><br /><a href="https://github.com/stevenpersia/tinder-react-native/commits?author=anand9" title="Code">💻</a></td>
-    <td align="center"><a href="http://Skibudsapp.com"><img src="https://avatars3.githubusercontent.com/u/25047763?v=4" width="100px;" alt="Stephen Phillips"/><br /><sub><b>Stephen Phillips</b></sub></a><br /><a href="#question-Sbphillips19" title="Answering Questions">💬</a></td>
   </tr>
 </table>
 
