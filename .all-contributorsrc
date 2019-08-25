@@ -1,0 +1,23 @@
+{
+  "files": [
+    "README.md"
+  ],
+  "imageSize": 100,
+  "commit": false,
+  "contributors": [
+    {
+      "login": "anand9",
+      "name": "Anand Vasudevan ",
+      "avatar_url": "https://avatars3.githubusercontent.com/u/638590?v=4",
+      "profile": "https://github.com/anand9",
+      "contributions": [
+        "code"
+      ]
+    }
+  ],
+  "contributorsPerLine": 7,
+  "projectName": "tinder-react-native",
+  "projectOwner": "stevenpersia",
+  "repoType": "github",
+  "repoHost": "https://github.com"
+}
