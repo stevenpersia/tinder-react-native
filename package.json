@@ -25,9 +25,9 @@
 	},
 	"jest": {
 		"preset": "react-native",
-    "transform": {
-      "node_modules/react-native/.+\\.js$": "<rootDir>/node_modules/react-native/jest/preprocessor.js"
-    }
+		"transform": {
+			"node_modules/react-native/.+\\.js$": "<rootDir>/node_modules/react-native/jest/preprocessor.js"
+		}
 	},
 	"rnpm": {
 		"assets": [
