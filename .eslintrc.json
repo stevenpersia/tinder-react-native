@@ -5,7 +5,8 @@
         "react-native/react-native": true
     },
     "extends": [
-        "standard"
+        "standard",
+        "plugin:react/recommended"
     ],
     "globals": {
         "Atomics": "readonly",
@@ -23,5 +24,7 @@
         "react-native"
     ],
     "rules": {
+        "semi": [2, "always"],
+        "react/prop-types": [1]
     }
 }
