@@ -1,0 +1,40 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Message component should render without issues 1`] = `
+<View
+  style={
+    Object {
+      "alignItems": "center",
+      "flex": 1,
+      "flexDirection": "row",
+      "justifyContent": "flex-start",
+      "paddingHorizontal": 10,
+      "width": 650,
+    }
+  }
+>
+  <Image
+    style={
+      Object {
+        "borderRadius": 30,
+        "height": 60,
+        "marginRight": 20,
+        "marginVertical": 15,
+        "width": 60,
+      }
+    }
+  />
+  <View>
+    <Text />
+    <Text
+      style={
+        Object {
+          "color": "#757E90",
+          "fontSize": 12,
+          "paddingTop": 5,
+        }
+      }
+    />
+  </View>
+</View>
+`;
