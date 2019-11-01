@@ -1,12 +1,14 @@
 import React from "react";
 import { Text } from "react-native";
-import { createBottomTabNavigator, createAppContainer } from "react-navigation";
+import { createBottomTabNavigator, createMaterialTopTabNavigator, createAppContainer } from "react-navigation";
 import styles from "./assets/styles";
 import HomeScreen from "./containers/Home";
 import MatchesScreen from "./containers/Matches";
 import MessagesScreen from "./containers/Messages";
 import ProfileScreen from "./containers/Profile";
 import Icon from "./components/Icon";
+// import { createBottomTabNavigator } from 'react-navigation-tabs';
+
 
 const App = createBottomTabNavigator(
 	{
@@ -25,7 +27,7 @@ const App = createBottomTabNavigator(
 		},
 		Matches: {
 			screen: MatchesScreen,
-			navigationOptions: {
+			navigationOptions: {	
 				tabBarIcon: ({ focused }) => {
 					const iconFocused = focused ? "#7444C0" : "#363636";
 					return (
@@ -64,6 +66,8 @@ const App = createBottomTabNavigator(
 		}
 	},
 	{
+		//tabBarPosition: 'bottom',
+		lazy: false,
 		tabBarOptions: {
 			activeTintColor: "#7444C0",
 			inactiveTintColor: "#363636",
@@ -73,9 +77,9 @@ const App = createBottomTabNavigator(
 				paddingTop: 10
 			},
 			style: {
-				backgroundColor: "#FFF",
+				backgroundColor: "#fff",
 				borderTopWidth: 0,
-				paddingVertical: 30,
+				paddingVertical: 10,
 				height: 60,
 				marginBottom: 0,
 				shadowOpacity: 0.05,
