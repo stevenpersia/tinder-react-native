@@ -24,7 +24,10 @@
 		"react-test-renderer": "16.6.3"
 	},
 	"jest": {
-		"preset": "react-native"
+		"preset": "react-native",
+		"transform": {
+			"node_modules/react-native/.+\\.js$": "<rootDir>/node_modules/react-native/jest/preprocessor.js"
+		}
 	},
 	"rnpm": {
 		"assets": [
