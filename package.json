@@ -7,6 +7,7 @@
 	"homepage": "https://github.com/stevenpersia/tinder-react-native",
 	"private": true,
 	"scripts": {
+		"lint": "eslint ./components ./containers --fix",
 		"start": "node node_modules/react-native/local-cli/cli.js start",
 		"test": "jest"
 	},
@@ -19,6 +20,14 @@
 	},
 	"devDependencies": {
 		"babel-jest": "^24.8.0",
+		"eslint": "^6.6.0",
+		"eslint-config-standard": "^14.1.0",
+		"eslint-plugin-import": "^2.18.2",
+		"eslint-plugin-node": "^10.0.0",
+		"eslint-plugin-promise": "^4.2.1",
+		"eslint-plugin-react": "^7.16.0",
+		"eslint-plugin-react-native": "^3.8.1",
+		"eslint-plugin-standard": "^4.0.1",
 		"jest": "^24.8.0",
 		"metro-react-native-babel-preset": "0.51.1",
 		"react-test-renderer": "16.6.3"
