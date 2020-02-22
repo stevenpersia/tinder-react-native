@@ -1,4 +1,4 @@
-const vars = require("./vars");
+const vars = require("../vars");
 const transporter = require("nodemailer").createTransport({
     service: "gmail",
     auth: {

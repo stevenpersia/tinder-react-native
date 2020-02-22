@@ -1,7 +1,8 @@
 const app = require("express")();
 const bodyParser = require("body-parser");
 const urlEncodedParser = bodyParser.urlencoded({ extended: false });
-const sendEmail = require("./emailer").sendEmail;
+const sendEmail = require("./utils/emailer").sendEmail;
+const DatabaseManager = require("./utils/DatabaseManager");
 
 app.use(bodyParser.json());
 
@@ -9,17 +10,29 @@ app.get("/", (req, res) => {
     res.status(200).sendFile(__dirname + "/test.html");
 });
 
-app.post("/test", urlEncodedParser,(req, res) => {
+app.get("/close", (req, res) => {
+    DatabaseManager.closeConnection();
+    res.status(200).redirect("/");
+});
+
+app.post("/new-user", urlEncodedParser, (req, res) => {
     const requestData = {
         name: req.body.name,
         email: req.body.email,
         gender: req.body.gender,
         uni: req.body.uni,
         major: req.body.major,
-        age: req.body.age
+        age: Number(req.body.age)
     };
-    // need to do some data validation
-    sendEmail(requestData);
+
+    DatabaseManager.insertProfile(requestData).then((result) => {
+        // sendEmail(requestData);
+        // reply with success response code
+        
+    }).catch((err) => {
+        // unsuccessful insert, reply back with unsuccess response code
+    });
+
     res.status(201).redirect("/");
 });
 
