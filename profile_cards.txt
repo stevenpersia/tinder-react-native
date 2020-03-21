@@ -1,0 +1,23 @@
+
+
+============== Profile Card ==================
+
+Name:                     ** Required **
+University:               ** Required **
+E-mail: 
+Age: 
+Gender:
+Picture: 
+
+Course Code: CSC209       ** Required **
+             CSC258
+             CSC321
+
+Additional Info: ...
+
+==============================================
+
+
+Search Parameters => Crs Code: CSC209
+
+Lakshya, UofT, Desc
