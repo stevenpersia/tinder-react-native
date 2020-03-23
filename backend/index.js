@@ -10,12 +10,24 @@ app.get("/", (req, res) => {
     res.status(200).sendFile(__dirname + "/test.html");
 });
 
+app.get("/search", (req, res) => {
+    res.status(200).sendFile(__dirname + "/search.html");
+});
+
 app.get("/close", (req, res) => {
     DatabaseManager.closeConnection();
     res.status(200).redirect("/");
 });
 
-app.get("/fetchProfiles", (req, res) => {
+app.get("/fetchUsers", (req, res) => {
+    DatabaseManager.fetchUsers({ email: req.query.email }).then((result) => {
+        res.send(result);
+    }).catch((err) => {
+        console.log(err);
+    });
+});
+
+app.get("/fetchProfileCards", (req, res) => {
     // 1. query user profile first for crs codes that are related to this user
     // 2. Fetch cards with same courses
     // 3. Filter according to additional req if necessary
@@ -23,6 +35,7 @@ app.get("/fetchProfiles", (req, res) => {
 });
 
 app.post("/newProfileCard", urlEncodedParser, (req, res) => {
+    
     // 1. Check if a profile card already exists linked to the user
     //     a. If it does, add this crs code as well
     // 2. Otherwise create a new profile card in the database *Profiles*

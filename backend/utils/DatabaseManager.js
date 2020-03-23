@@ -2,7 +2,10 @@ const MongoClient = require("mongodb").MongoClient;
 
 const MONGO_URL = "mongodb://localhost:27017";
 var client = new MongoClient(MONGO_URL, { useUnifiedTopology: true });
-const DB_NAME = "test";
+
+const COLLECTION_USERS = "Users";
+const COLLECTION_PROFILE_CARDS = "ProfileCards";
+const DB = "test";
 
 /**
  * Connect the client to database at the specified URL
@@ -31,11 +34,11 @@ function connectToDatabse() {
 function getCollection(collectionName) {
     return new Promise(function(resolve, reject) {
         if(client.isConnected()) {
-            resolve(client.db(DB_NAME).collection(collectionName));
+            resolve(client.db(DB).collection(collectionName));
         }
         else {
             connectToDatabse().then((connection) => {
-                resolve(connection.db(DB_NAME).collection(collectionName));
+                resolve(connection.db(DB).collection(collectionName));
             }).catch((reason) => {
                 reject(reason);
             })
@@ -48,7 +51,7 @@ function closeConnection() { client.close(); }
 function insertProfile(profile) {
     
     return new Promise(function(resolve, reject) {
-        getCollection("test").then((collection) => {
+        getCollection(COLLECTION_USERS).then((collection) => {
             collection.insertOne(profile).then((result) => {
                 resolve(result);
             }).catch((err) => {
@@ -61,5 +64,21 @@ function insertProfile(profile) {
     });
 }
 
+function fetchUsers(params) {
+
+    return new Promise(function(resolve, reject) {
+        getCollection(COLLECTION_USERS).then((collection) => {
+            collection.find(params).toArray(function(err, result) {
+                if(err) { reject(err); }
+
+                resolve(result);
+            });
+        }).catch((reason) => {
+            reject(reason);
+        });
+    });
+}
+
 module.exports.insertProfile = insertProfile;
 module.exports.closeConnection = closeConnection;
+module.exports.fetchProfile = fetchUsers;
