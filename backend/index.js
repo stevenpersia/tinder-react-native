@@ -7,11 +7,15 @@ const DatabaseManager = require("./utils/DatabaseManager");
 app.use(bodyParser.json());
 
 app.get("/", (req, res) => {
-    res.status(200).sendFile(__dirname + "/test.html");
+    res.status(200).sendFile(__dirname + "/user.html");
 });
 
 app.get("/search", (req, res) => {
     res.status(200).sendFile(__dirname + "/search.html");
+});
+
+app.get("/pcard", (req, res) => {
+    res.status(200).sendFile(__dirname + "/profile-card.html");
 });
 
 app.get("/close", (req, res) => {
@@ -35,10 +39,51 @@ app.get("/fetchProfileCards", (req, res) => {
 });
 
 app.post("/newProfileCard", urlEncodedParser, (req, res) => {
-    
-    // 1. Check if a profile card already exists linked to the user
+    // 1. Check if a profile card already exists linked to the user : TODO
     //     a. If it does, add this crs code as well
-    // 2. Otherwise create a new profile card in the database *Profiles*
+    // 2. Otherwise create a new profile card in the database *Profiles* : Done
+    
+    DatabaseManager.fetchUsers({ email: req.body.email }).then((result) => {
+        if(result.length === 0) {
+            console.log(`No user with email ${req.body.email}`);
+            res.status(404).send("404: User with email " + req.body.email + " couldn't be found");
+        }
+
+        user = result[0];
+        profileCard = {
+            user_id: user._id,
+            image: req.body.img,
+            crscode: req.body.crscode,
+            addinfo: req.body.addinfo
+        };
+
+        DatabaseManager.fetchProfileCards({ user_id: profileCard.user_id }).then((existingCards) => {
+            if(existingCards.length > 0) {
+                console.log("Card already exists");
+
+                // update entry in the database
+
+                res.status(200).send("Success");
+                return;
+            }
+            
+            // card doesn't exist
+            DatabaseManager.insertProfileCard(profileCard).then((result) => {
+                res.status(200).send("Success");
+            }).catch((err) => {
+                // unsuccessful insert, reply back with unsuccess response code
+                console.log(err);
+                res.status(500).send("Insert Failed");
+            });
+        })
+
+
+
+    }).catch((err) => {
+        console.log(err);
+        res.status(500).send("Can't find the user profile");
+    });
+    
 });
 
 app.post("/new-user", urlEncodedParser, (req, res) => {
@@ -52,7 +97,7 @@ app.post("/new-user", urlEncodedParser, (req, res) => {
     };
 
     // database *Users*
-    DatabaseManager.insertProfile(requestData).then((result) => {
+    DatabaseManager.insertUser(requestData).then((result) => {
         // sendEmail(requestData);
         // reply with success response code
 

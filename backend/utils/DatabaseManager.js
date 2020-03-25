@@ -48,7 +48,7 @@ function getCollection(collectionName) {
 
 function closeConnection() { client.close(); }
 
-function insertProfile(profile) {
+function insertUser(profile) {
     
     return new Promise(function(resolve, reject) {
         getCollection(COLLECTION_USERS).then((collection) => {
@@ -60,6 +60,21 @@ function insertProfile(profile) {
     
         }).catch((reason) => {
             reject(err);
+        });
+    });
+}
+
+function insertProfileCard(profileCard) {
+    
+    return new Promise(function(resolve, reject) {
+        getCollection(COLLECTION_PROFILE_CARDS).then((collection) => {
+            collection.insertOne(profileCard).then((result) => {
+                resolve(result);
+            }).catch((err) => {
+                reject(err);
+            });
+        }).catch((reason) => {
+            reject(reason);
         });
     });
 }
@@ -79,6 +94,22 @@ function fetchUsers(params) {
     });
 }
 
-module.exports.insertProfile = insertProfile;
+function fetchProfileCards(params) {
+    return new Promise(function(resolve, reject) {
+        getCollection(COLLECTION_PROFILE_CARDS).then((collection) => {
+            collection.find(params).toArray(function(err, result) {
+                if(err) { reject(err); }
+
+                resolve(result);
+            });
+        }).catch((reason) => {
+            reject(reason);
+        });
+    });
+}
+
+module.exports.insertUser = insertUser;
+module.exports.insertProfileCard = insertProfileCard;
 module.exports.closeConnection = closeConnection;
-module.exports.fetchProfile = fetchUsers;
+module.exports.fetchUsers = fetchUsers;
+module.exports.fetchProfileCards = fetchProfileCards;
