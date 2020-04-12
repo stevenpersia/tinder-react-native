@@ -32,8 +32,28 @@ app.get("/fetchUsers", (req, res) => {
 });
 
 app.get("/fetchProfileCards", (req, res) => {
+    final_cards_list = [];
     // 1. query user profile first for crs codes that are related to this user
-    // 2. Fetch cards with same courses
+    DatabaseManager.fetchUsers({ email: req.query.email }).then((result) => {
+        if(result.length === 0) {
+            console.log(`No user with email ${req.body.email}`);
+            res.status(404).send("404: User with email " + req.body.email + " couldn't be found");
+        }
+
+        user = result[0];
+        DatabaseManager.fetchProfileCards({ user_id: user._id }).then((profileCards) => {
+            if(profileCards.length > 0) {
+                req_card = profileCards[0];
+
+                // 2. Fetch cards with same courses (TODO)
+
+                return;
+            }
+            else {
+                res.status(404).send("404: Profile card for this user doesn't exist");
+            }
+        })
+    })
     // 3. Filter according to additional req if necessary
     // 4. Send response with all the valid cards (JSON)
 });
@@ -53,17 +73,27 @@ app.post("/newProfileCard", urlEncodedParser, (req, res) => {
         profileCard = {
             user_id: user._id,
             image: req.body.img,
-            crscode: req.body.crscode,
+            crscodes: [ req.body.crscode ],
             addinfo: req.body.addinfo
         };
 
         DatabaseManager.fetchProfileCards({ user_id: profileCard.user_id }).then((existingCards) => {
             if(existingCards.length > 0) {
-                console.log("Card already exists");
-
+                
+                existingCard = existingCards[0];
+                existingCard.crscodes.push(profileCard.crscodes[0]);
                 // update entry in the database
+                DatabaseManager.updateProfileCard(existingCard, { user_id: profileCard.user_id })
+                .then((updateResult) => {
+                    res.status(200).send("Success");
+                })
+                .catch((err) => {
+                    // unsuccessful insert, reply back with unsuccess response code
+                    console.log(err);
+                    res.status(500).send("Insert Failed");
+                });
 
-                res.status(200).send("Success");
+                
                 return;
             }
             

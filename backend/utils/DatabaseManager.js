@@ -25,11 +25,13 @@ function connectToDatabse() {
     });
 }
 
+function closeConnection() { client.close(); }
+
 /**
  * return a Promise which resolves to a reference to the collection with name provided.
  * On failure, error is returned
  * @param {String} collectionName
- * @returns {Promise}
+ * @returns {Promise} Promise which resolves to a reference to the collection
  */
 function getCollection(collectionName) {
     return new Promise(function(resolve, reject) {
@@ -45,8 +47,6 @@ function getCollection(collectionName) {
         }
     });
 }
-
-function closeConnection() { client.close(); }
 
 function insertUser(profile) {
     
@@ -73,6 +73,29 @@ function insertProfileCard(profileCard) {
             }).catch((err) => {
                 reject(err);
             });
+        }).catch((reason) => {
+            reject(reason);
+        });
+    });
+}
+
+/**
+ * Update Profile Card in the data base with new crscodes
+ * @param {JSON} updatedCard 
+ * @param {JSON} queryObject
+ * @returns {Promise} Promise which resolves to update result (or error reason if rejected)
+ */
+function updateProfileCard(updatedCard, queryObject) {
+    
+    return new Promise(function(resolve, reject) {
+        getCollection(COLLECTION_PROFILE_CARDS).then((collection) => {
+            updateDoc = { $set: { crscodes: updatedCard.crscodes } }
+            collection.updateOne(queryObject, updateDoc, function(err, updateResult) {
+                if(err) reject(err);
+
+                resolve(updateResult);
+            });
+
         }).catch((reason) => {
             reject(reason);
         });
@@ -110,6 +133,7 @@ function fetchProfileCards(params) {
 
 module.exports.insertUser = insertUser;
 module.exports.insertProfileCard = insertProfileCard;
+module.exports.updateProfileCard = updateProfileCard;
 module.exports.closeConnection = closeConnection;
 module.exports.fetchUsers = fetchUsers;
 module.exports.fetchProfileCards = fetchProfileCards;

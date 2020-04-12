@@ -3,7 +3,7 @@ const MONTH_DICT = {1: 'January', 2: 'February', 3: 'March', 4: 'April', 5: 'May
 
 const WEEK_DICT = {1: 'Monday', 2: 'Tuesday', 3: 'Wednesday', 4: 'Thursday', 5: 'Friday', 6: 'Saturday', 7: 'Sunday'};
 
-const APP_NAME = "Study Partner App"; // Placeholder name
+const APP_NAME = "Findr"; // Placeholder name
 
 module.exports.MONTH_DICT = MONTH_DICT;
 module.exports.WEEK_DICT = WEEK_DICT;
