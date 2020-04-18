@@ -83,7 +83,7 @@ function insertProfileCard(profileCard) {
  * Update Profile Card in the data base with new crscodes
  * @param {JSON} updatedCard 
  * @param {JSON} queryObject
- * @returns {Promise} Promise which resolves to update result (or error reason if rejected)
+ * @returns {Promise<JSON>} Promise which resolves to update result (or error reason if rejected)
  */
 function updateProfileCard(updatedCard, queryObject) {
     

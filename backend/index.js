@@ -45,17 +45,35 @@ app.get("/fetchProfileCards", (req, res) => {
             if(profileCards.length > 0) {
                 req_card = profileCards[0];
 
-                // 2. Fetch cards with same courses (TODO)
+                // 2. Fetch cards with same courses
+                crs_regexes = [];
+                for (let i = 0; i < req_card.crscodes.length; i++) {
+                    const course = req_card.crscodes[i];
+                    crs_regexes.push(new RegExp("^" + course + "$", "i"));
+                }
+
+                DatabaseManager.fetchProfileCards({ crscodes: { $in: crs_regexes } }).then((cards) => {
+
+                    cards = cards.filter((value, index, arr) => { return !(value["user_id"].equals(user._id)); });
+                    // 3. Filter according to additional req if necessary (TODO)
+                    res.status(200).send(cards);
+
+                }).catch((err) => {
+                    res.status(500).send("Server Error: Couldn't fetch cards");
+                })
 
                 return;
             }
             else {
                 res.status(404).send("404: Profile card for this user doesn't exist");
             }
+        }).catch((reason) => {
+
+            console.log(reason);
+            res.status(500).send("Servers Error: Couldn't fetch cards");
         })
     })
-    // 3. Filter according to additional req if necessary
-    // 4. Send response with all the valid cards (JSON)
+
 });
 
 app.post("/newProfileCard", urlEncodedParser, (req, res) => {
