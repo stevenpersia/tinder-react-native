@@ -7,15 +7,15 @@ const DatabaseManager = require("./utils/DatabaseManager");
 app.use(bodyParser.json());
 
 app.get("/", (req, res) => {
-    res.status(200).sendFile(__dirname + "/user.html");
+    res.status(200).sendFile(__dirname + "/test_html_files/user.html");
 });
 
 app.get("/search", (req, res) => {
-    res.status(200).sendFile(__dirname + "/search.html");
+    res.status(200).sendFile(__dirname + "/test_html_files/search.html");
 });
 
 app.get("/pcard", (req, res) => {
-    res.status(200).sendFile(__dirname + "/profile-card.html");
+    res.status(200).sendFile(__dirname + "/test_html_files/profile-card.html");
 });
 
 app.get("/close", (req, res) => {

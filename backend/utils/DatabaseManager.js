@@ -14,7 +14,10 @@ const DB = "test";
  */
 function connectToDatabse() {
     client = new MongoClient(MONGO_URL, { useUnifiedTopology: true });
-
+    // TODO: start a timer after connection is established. If the timer runs out,
+    // close the connection. Timer will be reset upon every request to the database.
+    // The time can be used to close the connection if there's no activity for extended
+    // period of time
     return new Promise(function(resolve, reject) {
         client.connect().then((connection) => {
             resolve(connection);
