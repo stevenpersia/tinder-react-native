@@ -16,7 +16,7 @@ const App = createBottomTabNavigator(
 				tabBarIcon: ({ focused }) => {
 					const iconFocused = focused ? "#7444C0" : "#363636";
 					return (
-						<Text style={[styles.iconMenu, { color: iconFocused }]}>
+						<Text style={[styles.iconMenu, { color: iconFocused, marginTop: "15%" }]}>
 							<Icon name="explore" />
 						</Text>
 					);
@@ -29,7 +29,7 @@ const App = createBottomTabNavigator(
 				tabBarIcon: ({ focused }) => {
 					const iconFocused = focused ? "#7444C0" : "#363636";
 					return (
-						<Text style={[styles.iconMenu, { color: iconFocused }]}>
+						<Text style={[styles.iconMenu, { color: iconFocused, marginTop: "15%" }]}>
 							<Icon name="heart" />
 						</Text>
 					);
@@ -42,7 +42,7 @@ const App = createBottomTabNavigator(
 				tabBarIcon: ({ focused }) => {
 					const iconFocused = focused ? "#7444C0" : "#363636";
 					return (
-						<Text style={[styles.iconMenu, { color: iconFocused }]}>
+						<Text style={[styles.iconMenu, { color: iconFocused, marginTop: "15%" }]}>
 							<Icon name="chat" />
 						</Text>
 					);
@@ -55,7 +55,7 @@ const App = createBottomTabNavigator(
 				tabBarIcon: ({ focused }) => {
 					const iconFocused = focused ? "#7444C0" : "#363636";
 					return (
-						<Text style={[styles.iconMenu, { color: iconFocused }]}>
+						<Text style={[styles.iconMenu, { color: iconFocused, marginTop: "15%" }]}>
 							<Icon name="user" />
 						</Text>
 					);
@@ -75,10 +75,10 @@ const App = createBottomTabNavigator(
 			style: {
 				backgroundColor: "#FFF",
 				borderTopWidth: 0,
-				paddingVertical: 30,
+				paddingVertical: 20,
 				height: 60,
 				marginBottom: 0,
-				shadowOpacity: 0.05,
+				shadowOpacity: 0.3,
 				shadowRadius: 10,
 				shadowColor: "#000",
 				shadowOffset: { height: 0, width: 0 }
