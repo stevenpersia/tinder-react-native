@@ -1,7 +1,7 @@
 const MongoClient = require("mongodb").MongoClient;
 
-const MONGO_URL = "mongodb://localhost:27017";
-var client = new MongoClient(MONGO_URL, { useUnifiedTopology: true });
+const MONGO_URL = "mongodb+srv://Lakshya26:<PASSWORD>@cluster0-hkvsu.mongodb.net/test?retryWrites=true&w=majority";
+var client = new MongoClient(MONGO_URL, { useUnifiedTopology: true, useNewUrlParser: true });
 
 const COLLECTION_USERS = "Users";
 const COLLECTION_PROFILE_CARDS = "ProfileCards";
@@ -140,3 +140,4 @@ module.exports.updateProfileCard = updateProfileCard;
 module.exports.closeConnection = closeConnection;
 module.exports.fetchUsers = fetchUsers;
 module.exports.fetchProfileCards = fetchProfileCards;
+module.exports.getCollection = getCollection;

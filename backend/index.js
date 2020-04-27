@@ -110,7 +110,9 @@ app.post("/newProfileCard", urlEncodedParser, (req, res) => {
             if(existingCards.length > 0) {
                 
                 existingCard = existingCards[0];
-                existingCard.crscodes.push(profileCard.crscodes[0]);
+                if(existingCard.crscodes.findIndex((crs) => { return profileCard.crscodes[0] === crs }) === -1) {
+                    existingCard.crscodes.push(profileCard.crscodes[0]);
+                }
                 // update entry in the database
                 DatabaseManager.updateProfileCard(existingCard, { user_id: profileCard.user_id })
                 .then((updateResult) => {
