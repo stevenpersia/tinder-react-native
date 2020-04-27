@@ -28,6 +28,17 @@ app.get("/fetchUsers", (req, res) => {
         res.send(result);
     }).catch((err) => {
         console.log(err);
+        res.status(500).send("Server error");
+    });
+});
+
+app.post("/fetchUsers_id", urlEncodedParser, (req, res) => {
+
+    DatabaseManager.fetchUsers({ _id: { $in: req.body.ids } }).then((result) => {
+        res.status(200).send(result);
+    }).catch((err) => {
+        console.log(err);
+        res.status(500).send("Server error");
     });
 });
 

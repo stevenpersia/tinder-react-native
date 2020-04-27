@@ -8,10 +8,6 @@ import styles from '../assets/styles';
 import Demo from '../assets/data/demo.js';
 import Fetcher from "../assets/data/Fetcher";
 
-async function cardMapper(fetcher) {
-  let cards = await fetcher.fetchCards();
-}
-
 class Home extends React.Component {
 
   constructor(props) {
@@ -20,14 +16,45 @@ class Home extends React.Component {
   }
 
   componentDidMount() {
-    this.state.fetcher.fetchCards().then((_cards) => {
-      this.setState({ cards: _cards });
+      this.state.fetcher.fetchCards().then((_cards) => {
+      ids = [];
+
+      _cards.forEach((_card) => {
+        ids.push(_card["user_id"]);
+      });
+
+
+      this.state.fetcher.fetchUsersById(ids).then((users) => {
+        console.log(users);
+        users = this.mapUsersToHashTable(users);
+
+        _cards.forEach((_card) => {
+          _card.name = users[_card.user_id].name;
+        });
+
+        this.setState({ cards: _cards });
+        
+      }).catch((reason) => {
+  
+        console.log("users fetch failed");
+        console.log(reason);
+      });
 
     }).catch((reason) => {
 
       console.log("fetch failed");
       console.log(reason);
     });
+  }
+
+  mapUsersToHashTable(users) {
+    var dict = {};
+
+    users.forEach((user) => {
+      dict[user._id] = user;
+    });
+
+    return dict;
   }
 
   render() {
@@ -52,7 +79,7 @@ class Home extends React.Component {
               <Card key={index}>
                 <CardItem
                   image={null}
-                  name={item.user_id.toString()}
+                  name={item.name}
                   description={item.addinfo}
                   matches={'100'}
                   actions
