@@ -32,8 +32,8 @@ app.get("/fetchUsers", (req, res) => {
 });
 
 app.get("/fetchProfileCards", (req, res) => {
-    final_cards_list = [];
-    // 1. query user profile first for crs codes that are related to this user
+
+    // query user profile first for crs codes that are related to this user
     DatabaseManager.fetchUsers({ email: req.query.email }).then((result) => {
         if(result.length === 0) {
             console.log(`No user with email ${req.body.email}`);
