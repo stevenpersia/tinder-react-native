@@ -48,13 +48,13 @@ class Home extends React.Component {
             renderNoMoreCards={() => null}
             ref={swiper => (this.swiper = swiper)}
           >
-            {Demo.map((item, index) => (
+            {this.state.cards.map((item, index) => (
               <Card key={index}>
                 <CardItem
-                  image={item.image}
-                  name={item.name}
-                  description={item.description}
-                  matches={item.match}
+                  image={null}
+                  name={item.user_id.toString()}
+                  description={item.addinfo}
+                  matches={'100'}
                   actions
                   onPressLeft={() => this.swiper.swipeLeft()}
                   onPressRight={() => this.swiper.swipeRight()}
