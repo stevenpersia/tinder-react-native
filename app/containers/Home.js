@@ -16,13 +16,15 @@ class Home extends React.Component {
   }
 
   componentDidMount() {
-      this.state.fetcher.fetchCards().then((_cards) => {
+    this.state.fetcher.fetchCards().then((_cards) => {
+
       ids = [];
 
       _cards.forEach((_card) => {
         ids.push(_card["user_id"]);
       });
 
+      // this.setState({ cards: _cards });
 
       this.state.fetcher.fetchUsersById(ids).then((users) => {
         console.log(users);
@@ -79,7 +81,7 @@ class Home extends React.Component {
               <Card key={index}>
                 <CardItem
                   image={null}
-                  name={item.name}
+                  name={item.user_id}
                   description={item.addinfo}
                   matches={'100'}
                   actions

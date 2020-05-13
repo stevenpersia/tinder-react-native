@@ -20,7 +20,7 @@ class Fetcher {
             headers: {
               'Content-Type': 'application/json',
             },
-            body: JSON.stringify(ids)
+            body: { ids }
         })).json()
 
         return users;
