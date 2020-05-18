@@ -11,44 +11,58 @@ import {
 } from 'react-native';
 import CardItem from '../components/CardItem';
 import Icon from '../components/Icon';
-import Demo from '../assets/data/demo.js';
+import Fetcher from "../assets/data/Fetcher";
 
-const Matches = () => {
-  return (
-    <ImageBackground
-      source={require('../assets/images/bg.png')}
-      style={styles.bg}
-    >
-      <View style={styles.containerMatches}>
-        <ScrollView>
-          <View style={styles.top}>
-            <Text style={styles.title}>Matches</Text>
-            <TouchableOpacity>
-              <Text style={styles.icon}>
-                <Icon name="optionsV" />
-              </Text>
-            </TouchableOpacity>
-          </View>
+class Matches extends React.Component {
 
-          <FlatList
-            numColumns={2}
-            data={Demo}
-            keyExtractor={(item, index) => index.toString()}
-            renderItem={({ item }) => (
+  constructor(props) {
+    super(props);
+    this.state = { fetcher: new Fetcher(), cards: [] };
+  }
+
+  async componentDidMount() {
+    const data = await this.state.fetcher.loadData("harsh@gmail.com");
+    this.setState({ cards: data });
+  }
+
+  render() {
+    return (
+      <ImageBackground
+        source={require('../assets/images/bg.png')}
+        style={styles.bg}
+      >
+        <View style={styles.containerMatches}>
+          <ScrollView>
+            <View style={styles.top}>
+              <Text style={styles.title}>Matches</Text>
               <TouchableOpacity>
-                <CardItem
-                  image={item.image}
-                  name={item.name}
-                  status={item.status}
-                  variant
-                />
+                <Text style={styles.icon}>
+                  <Icon name="optionsV" />
+                </Text>
               </TouchableOpacity>
-            )}
-          />
-        </ScrollView>
-      </View>
-    </ImageBackground>
-  );
-};
+            </View>
+  
+            <FlatList
+              numColumns={2}
+              data={this.state.cards}
+              keyExtractor={(item, index) => index.toString()}
+              renderItem={({ item }) => (
+                <TouchableOpacity>
+                  <CardItem
+                    image={ { uri: item.image } }
+                    name={item.name}
+                    status={'Online'}
+                    matchesPage={true}
+                    variant
+                  />
+                </TouchableOpacity>
+              )}
+            />
+          </ScrollView>
+        </View>
+      </ImageBackground>
+    );
+  }
+}
 
 export default Matches;

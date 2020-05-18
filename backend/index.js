@@ -1,9 +1,11 @@
+require('dotenv').config();
 const app = require("express")();
 const bodyParser = require("body-parser");
 const urlEncodedParser = bodyParser.urlencoded({ extended: false });
 const sendEmail = require("./utils/emailer").sendEmail;
 const DatabaseManager = require("./utils/DatabaseManager");
 const ObjectId = require("objectid");
+const AWS_Presigner = require('./utils/AWSPresigner');
 
 app.use(bodyParser.json());
 
@@ -37,7 +39,11 @@ app.post("/fetchUsers_id", urlEncodedParser, (req, res) => {
     ids = [];
     req.body.ids.forEach((value) => { ids.push( ObjectId(value) ); });
 
-    DatabaseManager.fetchUsers({ _id: { $in: ids } }).then((result) => {
+    DatabaseManager.fetchUsers({ _id: { $in: ids } }).then(async function(result) {
+        for(var i = 0; i < result.length; i++) {
+            result[i].image = await AWS_Presigner.generateSignedGetUrl("user_images/" + result[i].image);
+        }
+
         res.status(200).send(result);
     }).catch((err) => {
         console.log(err);
@@ -104,7 +110,6 @@ app.post("/newProfileCard", urlEncodedParser, (req, res) => {
         user = result[0];
         profileCard = {
             user_id: user._id,
-            image: req.body.img,
             crscodes: [ req.body.crscode ],
             addinfo: req.body.addinfo
         };
@@ -157,7 +162,8 @@ app.post("/new-user", urlEncodedParser, (req, res) => {
         gender: req.body.gender,
         uni: req.body.uni,
         major: req.body.major, // don't need it
-        age: Number(req.body.age)
+        age: Number(req.body.age),
+        image: req.body.image
     };
 
     // database *Users*

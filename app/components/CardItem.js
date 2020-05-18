@@ -8,7 +8,7 @@ const CardItem = ({
   actions,
   description,
   image,
-  matches,
+  matchesPage,
   name,
   courses,
   onPressLeft,
@@ -22,7 +22,7 @@ const CardItem = ({
     {
       borderRadius: 8,
       width: variant ? fullWidth / 2 - 30 : fullWidth - 80,
-      height: variant ? 120 : 300,
+      height: matchesPage ? (variant ? 120 : 300) : (variant ? 110 : 220),
       margin: variant ? 0 : 20
     }
   ];
@@ -32,7 +32,8 @@ const CardItem = ({
       paddingTop: variant ? 10 : 15,
       paddingBottom: variant ? 5 : 7,
       color: '#363636',
-      fontSize: variant ? 15 : 30
+      fontSize: variant ? 15 : 30,
+      alignSelf: 'center'
     }
   ];
 
@@ -40,8 +41,9 @@ const CardItem = ({
     {
       paddingTop: variant ? 10 : 15,
       paddingBottom: variant ? 5 : 7,
-      color: '#363636',
-      fontSize: variant ? 5 : 20
+      color: '#757E90',
+      fontSize: variant ? 5 : 19,
+      alignSelf: 'center'
     }
   ];
 
@@ -63,10 +65,14 @@ const CardItem = ({
       <Text style={nameStyle}>{name}</Text>
 
       {/* Courses */}
-      <Text style={CourseHeaderStyle}>Courses: </Text>
-      {courses.map((item, index) => (
-          <Text>{item}</Text>
-      ))}
+      {courses && <Text style={CourseHeaderStyle}>
+        {courses.map((item, index) => (
+          <Text key={String(index)} >
+            {index === courses.length - 1 ? " " + item : " " + item + ","}
+          </Text>
+        ))}
+      </Text>}
+      
 
       {/* DESCRIPTION */}
       {description && (
@@ -84,11 +90,6 @@ const CardItem = ({
       {/* ACTIONS */}
       {actions && (
         <View style={styles.actionsCardItem}>
-          <TouchableOpacity style={styles.miniButton}>
-            <Text style={styles.star}>
-              <Icon name="star" />
-            </Text>
-          </TouchableOpacity>
 
           <TouchableOpacity style={styles.button} onPress={() => onPressLeft()}>
             <Text style={styles.like}>
@@ -105,11 +106,6 @@ const CardItem = ({
             </Text>
           </TouchableOpacity>
 
-          <TouchableOpacity style={styles.miniButton}>
-            <Text style={styles.flash}>
-              <Icon name="flash" />
-            </Text>
-          </TouchableOpacity>
         </View>
       )}
     </View>

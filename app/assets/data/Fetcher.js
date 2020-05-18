@@ -9,9 +9,9 @@ class Fetcher {
         this.PORT = customPort ? customPort : PORT;
     }
 
-    async fetchCards() {        
+    async fetchCards(email) {        
         return await (await fetch(this.ENDPOINT + ":" + String(this.PORT) 
-        + "/fetchProfileCards?email=harsh@gmail.com")).json();
+        + "/fetchProfileCards?email=" + email)).json();
     }
 
     async fetchUsersById(ids) {
@@ -24,6 +24,36 @@ class Fetcher {
         })).json()
 
         return users;
+    }
+
+    async loadData(email) {
+
+        let profileCards = await this.fetchCards(email);
+
+        ids = [];
+        profileCards.forEach((_card) => {
+            ids.push(_card["user_id"]);
+        });
+
+        let users = await this.fetchUsersById(ids);
+        users = this.mapUsersToHashTable(users);
+
+        profileCards.forEach((_card) => {
+            _card.name = users[_card.user_id].name;
+            _card.image = users[_card.user_id].image;
+        });
+
+        return profileCards;
+    }
+
+    mapUsersToHashTable(users) {
+        var dict = {};
+    
+        users.forEach((user) => {
+          dict[user._id] = user;
+        });
+    
+        return dict;
     }
 }
 

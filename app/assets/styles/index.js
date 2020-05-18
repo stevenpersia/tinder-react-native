@@ -25,7 +25,7 @@ export default StyleSheet.create({
 	containerCardItem: {
 		backgroundColor: WHITE,
 		borderRadius: 8,
-		alignItems: "center",
+		// alignItems: "center",
 		margin: 10,
 		shadowOpacity: 0.05,
 		shadowRadius: 10,
@@ -45,12 +45,16 @@ export default StyleSheet.create({
 	},
 	descriptionCardItem: {
 		color: GRAY,
-		textAlign: "center"
+		textAlign: "center",
+		padding: 10,
+		marginTop: 10,
+		marginBottom: 0,
 	},
 	status: {
 		paddingBottom: 10,
 		flexDirection: "row",
-		alignItems: "center"
+		alignItems: "center",
+		alignSelf: 'center',
 	},
 	statusText: {
 		color: GRAY,
@@ -73,7 +77,8 @@ export default StyleSheet.create({
 	actionsCardItem: {
 		flexDirection: "row",
 		alignItems: "center",
-		paddingVertical: 30
+		paddingVertical: 20,
+		alignSelf: "center"
 	},
 	button: {
 		width: 60,
