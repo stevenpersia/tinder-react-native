@@ -3,6 +3,7 @@ const bodyParser = require("body-parser");
 const urlEncodedParser = bodyParser.urlencoded({ extended: false });
 const sendEmail = require("./utils/emailer").sendEmail;
 const DatabaseManager = require("./utils/DatabaseManager");
+const ObjectId = require("objectid");
 
 app.use(bodyParser.json());
 
@@ -33,8 +34,10 @@ app.get("/fetchUsers", (req, res) => {
 });
 
 app.post("/fetchUsers_id", urlEncodedParser, (req, res) => {
+    ids = [];
+    req.body.ids.forEach((value) => { ids.push( ObjectId(value) ); });
 
-    DatabaseManager.fetchUsers({ _id: { $in: req.body.ids } }).then((result) => {
+    DatabaseManager.fetchUsers({ _id: { $in: ids } }).then((result) => {
         res.status(200).send(result);
     }).catch((err) => {
         console.log(err);
@@ -67,7 +70,7 @@ app.get("/fetchProfileCards", (req, res) => {
 
                     cards = cards.filter((value, index, arr) => { return !(value["user_id"].equals(user._id)); });
                     // 3. Filter according to additional req if necessary (TODO)
-                    res.status(200).send(cards);
+                    res.status(200).send(JSON.stringify(cards));
 
                 }).catch((err) => {
                     res.status(500).send("Server Error: Couldn't fetch cards");

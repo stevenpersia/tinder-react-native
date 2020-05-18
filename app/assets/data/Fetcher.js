@@ -10,8 +10,8 @@ class Fetcher {
     }
 
     async fetchCards() {        
-        let cards = await (await fetch(this.ENDPOINT + ":" + String(this.PORT) + "/fetchProfileCards?email=harsh@gmail.com")).json();
-        return cards;
+        return await (await fetch(this.ENDPOINT + ":" + String(this.PORT) 
+        + "/fetchProfileCards?email=harsh@gmail.com")).json();
     }
 
     async fetchUsersById(ids) {
@@ -20,7 +20,7 @@ class Fetcher {
             headers: {
               'Content-Type': 'application/json',
             },
-            body: { ids }
+            body: JSON.stringify({ ids })
         })).json()
 
         return users;

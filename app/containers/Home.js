@@ -19,7 +19,6 @@ class Home extends React.Component {
     this.state.fetcher.fetchCards().then((_cards) => {
 
       ids = [];
-
       _cards.forEach((_card) => {
         ids.push(_card["user_id"]);
       });
@@ -27,11 +26,11 @@ class Home extends React.Component {
       // this.setState({ cards: _cards });
 
       this.state.fetcher.fetchUsersById(ids).then((users) => {
-        console.log(users);
         users = this.mapUsersToHashTable(users);
 
         _cards.forEach((_card) => {
           _card.name = users[_card.user_id].name;
+          console.log(_card);
         });
 
         this.setState({ cards: _cards });
@@ -81,7 +80,8 @@ class Home extends React.Component {
               <Card key={index}>
                 <CardItem
                   image={null}
-                  name={item.user_id}
+                  name={item.name}
+                  courses={item.crscodes}
                   description={item.addinfo}
                   matches={'100'}
                   actions

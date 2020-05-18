@@ -10,6 +10,7 @@ const CardItem = ({
   image,
   matches,
   name,
+  courses,
   onPressLeft,
   onPressRight,
   status,
@@ -21,7 +22,7 @@ const CardItem = ({
     {
       borderRadius: 8,
       width: variant ? fullWidth / 2 - 30 : fullWidth - 80,
-      height: variant ? 170 : 350,
+      height: variant ? 120 : 300,
       margin: variant ? 0 : 20
     }
   ];
@@ -35,22 +36,37 @@ const CardItem = ({
     }
   ];
 
+  const CourseHeaderStyle = [
+    {
+      paddingTop: variant ? 10 : 15,
+      paddingBottom: variant ? 5 : 7,
+      color: '#363636',
+      fontSize: variant ? 5 : 20
+    }
+  ];
+
   return (
     <View style={styles.containerCardItem}>
       {/* IMAGE */}
       <Image source={image} style={imageStyle} />
 
       {/* MATCHES */}
-      {matches && (
+      {/* {matches && (
         <View style={styles.matchesCardItem}>
           <Text style={styles.matchesTextCardItem}>
             <Icon name="heart" /> {matches}% Match!
           </Text>
         </View>
-      )}
+      )} */}
 
       {/* NAME */}
       <Text style={nameStyle}>{name}</Text>
+
+      {/* Courses */}
+      <Text style={CourseHeaderStyle}>Courses: </Text>
+      {courses.map((item, index) => (
+          <Text>{item}</Text>
+      ))}
 
       {/* DESCRIPTION */}
       {description && (
