@@ -16,7 +16,7 @@ class Home extends React.Component {
   }
 
   async componentDidMount() {
-    const data = await this.state.fetcher.loadData("harsh@gmail.com");
+    const data = await this.state.fetcher.loadData("gautam.gireesh@mail.utoronto.ca");
     this.setState({ cards: data });
   }
 

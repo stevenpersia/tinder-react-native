@@ -1,6 +1,7 @@
 const MongoClient = require("mongodb").MongoClient;
 
-const MONGO_URL = "mongodb+srv://Lakshya26:<PASSWORD>@cluster0-hkvsu.mongodb.net/test?retryWrites=true&w=majority";
+const MONGO_URL = 
+"mongodb+srv://" + process.env.DATABASE_USER + ":" + process.env.DATABASE_PASS + "@cluster0-hkvsu.mongodb.net/test?retryWrites=true&w=majority";
 var client = new MongoClient(MONGO_URL, { useUnifiedTopology: true, useNewUrlParser: true });
 
 const COLLECTION_USERS = "Users";
