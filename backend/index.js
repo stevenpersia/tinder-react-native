@@ -27,8 +27,13 @@ app.get("/close", (req, res) => {
 });
 
 app.get("/fetchUsers", (req, res) => {
-    DatabaseManager.fetchUsers({ email: req.query.email }).then((result) => {
+    DatabaseManager.fetchUsers({ email: req.query.email }).then(async function(result) {
+        for(var i = 0; i < result.length; i++) {
+            result[i].image = await AWS_Presigner.generateSignedGetUrl("user_images/" + result[i].image);
+        }
+
         res.send(result);
+
     }).catch((err) => {
         console.log(err);
         res.status(500).send("Server error");

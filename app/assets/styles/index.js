@@ -124,6 +124,10 @@ export default StyleSheet.create({
 		fontFamily: ICON_FONT,
 		color: FLASH_ACTIONS
 	},
+	popupCard: {
+		backgroundColor: WHITE,
+		borderRadius: 20
+	},
 
 	// COMPONENT - CITY
 	city: {

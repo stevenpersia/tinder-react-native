@@ -26,6 +26,11 @@ class Fetcher {
         return users;
     }
 
+    async fetchUser(email) {
+        return await (await fetch(this.ENDPOINT + ":" + String(this.PORT) 
+        + "/fetchUsers?email=" + email)).json();
+    }
+
     async loadData(email) {
 
         let profileCards = await this.fetchCards(email);
@@ -44,6 +49,11 @@ class Fetcher {
         });
 
         return profileCards;
+    }
+
+    async loadSelfProfile(email) {
+        let user = (await this.fetchUser(email));
+        return user[0];
     }
 
     mapUsersToHashTable(users) {

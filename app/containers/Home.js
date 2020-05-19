@@ -6,6 +6,7 @@ import Filters from '../components/Filters';
 import CardItem from '../components/CardItem';
 import styles from '../assets/styles';
 import Fetcher from "../assets/data/Fetcher";
+// import ProfilePopup from "../components/ProfilePopup";
 
 class Home extends React.Component {
 
