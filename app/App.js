@@ -1,7 +1,8 @@
 import React from "react";
-import { Text } from "react-native";
+import { Text, View } from "react-native";
 import { createBottomTabNavigator, createAppContainer } from "react-navigation";
 import styles from "./assets/styles";
+import SignUpScreen from "./containers/SignUp";
 import HomeScreen from "./containers/Home";
 import MatchesScreen from "./containers/Matches";
 import MessagesScreen from "./containers/Messages";
@@ -91,4 +92,4 @@ const App = createBottomTabNavigator(
 	}
 );
 
-export default createAppContainer(App);
+export default (false ? SignUpScreen : createAppContainer(App));
