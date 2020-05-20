@@ -1,11 +1,15 @@
 require('dotenv').config();
 const app = require("express")();
+const http = require('http').createServer(app);
+const io = require('socket.io')(http);
 const bodyParser = require("body-parser");
 const urlEncodedParser = bodyParser.urlencoded({ extended: false });
-const sendEmail = require("./utils/emailer").sendEmail;
+// const sendEmail = require("./utils/emailer").sendEmail;
 const DatabaseManager = require("./utils/DatabaseManager");
 const ObjectId = require("objectid");
 const AWS_Presigner = require('./utils/AWSPresigner');
+const Chat = require('./utils/Chat').Chat;
+
 
 app.use(bodyParser.json());
 
@@ -166,7 +170,7 @@ app.post("/new-user", urlEncodedParser, (req, res) => {
         email: req.body.email,
         gender: req.body.gender,
         uni: req.body.uni,
-        major: req.body.major, // don't need it
+        major: req.body.major,
         age: Number(req.body.age),
         image: req.body.image
     };
@@ -185,4 +189,13 @@ app.post("/new-user", urlEncodedParser, (req, res) => {
     res.status(201).redirect("/");
 });
 
-app.listen(3000, () => { console.log("Server is running"); });
+/* Socket Listeners for chat */
+
+io.on('connection', (socket) => {
+
+    socket.on('new msg', (msg) => {
+        
+    });
+});
+
+http.listen(3000, () => { console.log("Server is running"); });

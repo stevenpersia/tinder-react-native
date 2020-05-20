@@ -6,6 +6,7 @@ var client = new MongoClient(MONGO_URL, { useUnifiedTopology: true, useNewUrlPar
 
 const COLLECTION_USERS = "Users";
 const COLLECTION_PROFILE_CARDS = "ProfileCards";
+const COLLECTION_CHATS = "ChatStorage";
 const DB = "test";
 
 /**
@@ -129,6 +130,54 @@ function fetchProfileCards(params) {
 
                 resolve(result);
             });
+        }).catch((reason) => {
+            reject(reason);
+        });
+    });
+}
+
+function fetchChat(chat_id) {
+
+    return new Promise(function(resolve, reject) {
+        getCollection(COLLECTION_CHATS).then((collection) => {
+            collection.find({ uid: chat_id }).toArray(function(err, result) {
+                if(err) { reject(err); }
+
+                resolve(result);
+            });
+
+        }).catch((reason) => {
+            reject(reason);
+        })
+    });
+}
+
+function insertProfileCard(chat) {
+    
+    return new Promise(function(resolve, reject) {
+        getCollection(COLLECTION_CHATS).then((collection) => {
+            collection.insertOne(chat).then((result) => {
+                resolve(result);
+            }).catch((err) => {
+                reject(err);
+            });
+        }).catch((reason) => {
+            reject(reason);
+        });
+    });
+}
+
+function updateChat(updatedChatObject, queryObject) {
+    
+    return new Promise(function(resolve, reject) {
+        getCollection(COLLECTION_CHATS).then((collection) => {
+            updateDoc = { $set: { chat: updatedChatObject } }
+            collection.updateOne(queryObject, updateDoc, function(err, updateResult) {
+                if(err) reject(err);
+
+                resolve(updateResult);
+            });
+
         }).catch((reason) => {
             reject(reason);
         });
