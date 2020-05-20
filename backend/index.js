@@ -105,6 +105,34 @@ app.get("/fetchProfileCards", (req, res) => {
 
 });
 
+app.get("/fetchChatData", (req, res) => {
+
+    var uid = (new Chat(req.query.from, req.query.to)).uid;
+
+    DatabaseManager.fetchChat(uid).then((chat) => {
+
+        if(chat.length === 1) {
+            res.status(200).send(JSON.stringify(chat.chat));
+        }
+        else {
+            uid = (new Chat(req.query.to, req.query.from)).uid;
+            DatabaseManager.fetchChat(uid).then((chat) => {
+                if(chat.length === 1) {
+                    res.status(200).send(JSON.stringify(chat.chat));
+                }
+                else {
+                    res.status(404).send("Couldn't find chat records");
+                }
+            }).catch((err) => {
+                res.status(500).send("Server error");
+            });
+        }
+    }).catch((err) => {
+        res.status(500).send("Server error");
+    });
+
+});
+
 app.post("/newProfileCard", urlEncodedParser, (req, res) => {
     // 1. Check if a profile card already exists linked to the user : TODO
     //     a. If it does, add this crs code as well
@@ -193,8 +221,41 @@ app.post("/new-user", urlEncodedParser, (req, res) => {
 
 io.on('connection', (socket) => {
 
+    socket.on('login', (msg) => {
+        DatabaseManager.fetchChat( (new Chat(msg.from, msg.to)).uid ).then((chat) => {
+            if(chat.length < 1) {
+                // chat with id = hash(from, to) doesn't exist, so try reverse order
+                DatabaseManager.fetchChat( (new Chat(msg.to, msg.from)).uid ).then((chat) => {
+                    if(chat.length < 1) {
+                        chat = new Chat(msg.from, msg.to);
+
+                        DatabaseManager.insertChat({ uid: chat.uid, chat }).then((result) => {
+                            socket.join(chat.uid);
+                        })
+                        .catch((err) => {
+                            socket.emit('chat-connection-failed');
+                        });
+
+                    }
+                    else {
+                        socket.join(chat.uid);
+                    }
+
+                }).catch((err) => {
+                    socket.emit('chat-connection-failed');
+                });
+            }
+            else {
+                socket.join(chat.uid);
+            }
+
+        }).catch((err) => {
+            socket.emit('chat-connection-failed');
+        });
+    });
+
     socket.on('new msg', (msg) => {
-        
+        // TODO
     });
 });
 

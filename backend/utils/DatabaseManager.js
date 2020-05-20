@@ -152,7 +152,7 @@ function fetchChat(chat_id) {
     });
 }
 
-function insertProfileCard(chat) {
+function insertChat(chat) {
     
     return new Promise(function(resolve, reject) {
         getCollection(COLLECTION_CHATS).then((collection) => {
@@ -186,8 +186,15 @@ function updateChat(updatedChatObject, queryObject) {
 
 module.exports.insertUser = insertUser;
 module.exports.insertProfileCard = insertProfileCard;
+module.exports.insertChat = insertChat;
+
 module.exports.updateProfileCard = updateProfileCard;
+module.exports.updateChat = updateChat;
+
 module.exports.closeConnection = closeConnection;
+
 module.exports.fetchUsers = fetchUsers;
 module.exports.fetchProfileCards = fetchProfileCards;
+module.exports.fetchChat = fetchChat;
+
 module.exports.getCollection = getCollection;
