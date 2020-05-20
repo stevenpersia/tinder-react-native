@@ -22,7 +22,7 @@ const CardItem = ({
     {
       borderRadius: 8,
       width: variant ? fullWidth / 2 - 30 : fullWidth - 80,
-      height: matchesPage ? (variant ? 120 : 300) : (variant ? 110 : 220),
+      height: matchesPage ? (variant ? 120 : 300) : (variant ? 110 : 200),
       margin: variant ? 0 : 20
     }
   ];

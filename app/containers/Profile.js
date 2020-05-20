@@ -20,7 +20,7 @@ class Profile extends React.Component {
   }
 
   async componentDidMount() {
-    let user = await this.state.fetcher.loadSelfProfile('lakshya.gupta@mail.utoronto.ca');
+    let user = await this.state.fetcher.loadSelfProfile('harsh@gmail.com');
     this.setState({ profile: user });
   }
 

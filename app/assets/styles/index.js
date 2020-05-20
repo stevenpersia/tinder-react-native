@@ -11,7 +11,7 @@ const ONLINE_STATUS = "#46A575";
 const OFFLINE_STATUS = "#D04949";
 
 const STAR_ACTIONS = "#FFA200";
-const LIKE_ACTIONS = "#B644B2";
+const LIKE_ACTIONS = "#2c9c91";
 const DISLIKE_ACTIONS = "#363636";
 const FLASH_ACTIONS = "#5028D7";
 
@@ -232,7 +232,7 @@ export default StyleSheet.create({
 	},
 	iconProfile: {
 		fontFamily: ICON_FONT,
-		fontSize: 12,
+		fontSize: 20,
 		color: DARK_GRAY,
 		paddingHorizontal: 10
 	},
@@ -255,7 +255,11 @@ export default StyleSheet.create({
 		justifyContent: "space-between",
 		alignItems: "center"
 	},
-	title: { paddingBottom: 10, fontSize: 22, color: DARK_GRAY },
+	title: { 
+		paddingBottom: 10, 
+		fontSize: 22, 
+		color: DARK_GRAY 
+	},
 	icon: {
 		fontFamily: ICON_FONT,
 		fontSize: 20,
@@ -343,9 +347,11 @@ export default StyleSheet.create({
 	tabButtonText: {
 		textTransform: "uppercase"
 	},
+	// Icon size 
 	iconMenu: {
 		fontFamily: ICON_FONT,
 		height: 20,
-		paddingBottom: 7
+		fontSize: 20,
+		paddingBottom: 1
 	}
 });

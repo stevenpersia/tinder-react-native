@@ -8,13 +8,18 @@ import MessagesScreen from "./containers/Messages";
 import ProfileScreen from "./containers/Profile";
 import Icon from "./components/Icon";
 
+/*In this world, everything is governed by balance. 
+There’s what you stand to gain and what you stand to lose. 
+And when you think you’ve got nothing to lose, 
+you become overconfident.*/
+
 const App = createBottomTabNavigator(
 	{
 		Explore: {
 			screen: HomeScreen,
 			navigationOptions: {
 				tabBarIcon: ({ focused }) => {
-					const iconFocused = focused ? "#7444C0" : "#363636";
+					const iconFocused = focused ? "#2c9c91" : "#4a4949";
 					return (
 						<Text style={[styles.iconMenu, { color: iconFocused, marginTop: "15%" }]}>
 							<Icon name="explore" />
@@ -27,7 +32,7 @@ const App = createBottomTabNavigator(
 			screen: MatchesScreen,
 			navigationOptions: {
 				tabBarIcon: ({ focused }) => {
-					const iconFocused = focused ? "#7444C0" : "#363636";
+					const iconFocused = focused ? "#2c9c91" : "#4a4949"; //#363636
 					return (
 						<Text style={[styles.iconMenu, { color: iconFocused, marginTop: "15%" }]}>
 							<Icon name="heart" />
@@ -40,7 +45,7 @@ const App = createBottomTabNavigator(
 			screen: MessagesScreen,
 			navigationOptions: {
 				tabBarIcon: ({ focused }) => {
-					const iconFocused = focused ? "#7444C0" : "#363636";
+					const iconFocused = focused ? "#2c9c91" : "#4a4949";
 					return (
 						<Text style={[styles.iconMenu, { color: iconFocused, marginTop: "15%" }]}>
 							<Icon name="chat" />
@@ -53,7 +58,7 @@ const App = createBottomTabNavigator(
 			screen: ProfileScreen,
 			navigationOptions: {
 				tabBarIcon: ({ focused }) => {
-					const iconFocused = focused ? "#7444C0" : "#363636";
+					const iconFocused = focused ? "#2c9c91" : "#4a4949";
 					return (
 						<Text style={[styles.iconMenu, { color: iconFocused, marginTop: "15%" }]}>
 							<Icon name="user" />
@@ -68,7 +73,7 @@ const App = createBottomTabNavigator(
 			activeTintColor: "#7444C0",
 			inactiveTintColor: "#363636",
 			labelStyle: {
-				fontSize: 14,
+				fontSize: 0,
 				textTransform: "uppercase",
 				paddingTop: 10
 			},
@@ -77,7 +82,6 @@ const App = createBottomTabNavigator(
 				borderTopWidth: 0,
 				paddingVertical: 20,
 				height: 60,
-				marginBottom: 0,
 				shadowOpacity: 0.3,
 				shadowRadius: 10,
 				shadowColor: "#000",

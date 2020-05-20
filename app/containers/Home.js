@@ -8,15 +8,16 @@ import styles from '../assets/styles';
 import Fetcher from "../assets/data/Fetcher";
 // import ProfilePopup from "../components/ProfilePopup";
 
-class Home extends React.Component {
+const MAX_LENGTH = 150;
 
+class Home extends React.Component {
   constructor(props) {
     super(props);
     this.state = { cards: [], fetcher: new Fetcher() };
   }
 
   async componentDidMount() {
-    const data = await this.state.fetcher.loadData("gautam.gireesh@mail.utoronto.ca");
+    const data = await this.state.fetcher.loadData("harsh@gmail.com");
     this.setState({ cards: data });
   }
 
@@ -26,6 +27,7 @@ class Home extends React.Component {
         source={require('../assets/images/bg.png')}
         style={styles.bg}
       >
+        {/* <ProfilePopup /> */}
         <View style={styles.containerHome}>
           <View style={styles.top}>
             <City />
@@ -44,7 +46,7 @@ class Home extends React.Component {
                   image={ { uri: item.image } }
                   name={item.name}
                   courses={item.crscodes}
-                  description={item.addinfo}
+                  description={item.addinfo.length > MAX_LENGTH ? (item.addinfo.substring(0,MAX_LENGTH) + "...") : item.addinfo}
                   matchesPage={false}
                   actions
                   onPressLeft={() => this.swiper.swipeLeft()}

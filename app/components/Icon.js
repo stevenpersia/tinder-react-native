@@ -2,7 +2,7 @@ const Icon = ({ name }) => {
   const iconsList = {
     heart: '&#xe800;',
     star: '&#xe801;',
-    like: '&#xe800;',
+    like: '&#x2713;',
     dislike: '&#xe802;',
     flash: '&#xe803;',
     marker: '&#xf031;',
