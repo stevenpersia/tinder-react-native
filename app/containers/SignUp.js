@@ -130,138 +130,138 @@ class SignUp extends React.Component {
 
     render() {
         return (
-                <View style={{backgroundColor: "#164e48", width: "100%", height: "100%", padding: '3%' }}>
-                    <Image style={styles.logo} source={require('../assets/images/Findr_white2x.png')}/>
-                    <Swiper
-                        style={styles.wrapper}
-                        height={240}
-                        onMomentumScrollEnd={(e, state, context) =>
-                            console.log('index:', state.index)
-                        }
-                        dot={
-                            <View
-                            style={{
-                                backgroundColor: 'rgba(0,0,0,.3)',
-                                width: 10,
-                                height: 10,
-                                borderRadius: 10,
-                                marginLeft: 0,
-                                marginRight: 130,
-                                marginTop: 3,
-                                marginBottom: 10
-                            }}/>
-                        }
-                        activeDot={
-                            <View
-                            style={{
-                                backgroundColor: '#FFF',
-                                width: 15,
-                                height: 15,
-                                borderRadius: 10,
-                                marginLeft: 0,
-                                marginRight: 130,
-                                marginTop: 3,
-                                marginBottom: 10
-                            }}/>
-                        }
-                        paginationStyle={{
-                            bottom: -23,
-                            left: null,
-                            right: 10
-                        }}
-                        loop={false}
-                        >
-                        <View style={styles.slide}>
-                            <TextInput
-                                mode={this.state.nameMode}
-                                value={this.state.name}
-                                label='Name'
-                                placeholder="Enter your full name"
-                                onFocus={() => this.setState({ nameMode: 'flat' })}
-                                onBlur={() => { if(this.state.name.length === 0) { this.setState({ nameMode: 'outlined' }); } }}
-                                onChangeText={this.handleNameChange.bind(this)}
-                                theme={labelStyle}
-                                style={textBoxStyle}
-                            />
+            <View style={{backgroundColor: "#164e48", width: "100%", height: "100%", padding: '3%' }}>
+                <Image style={styles.logo} source={require('../assets/images/Findr_white2x.png')}/>
+                <Swiper
+                    style={styles.wrapper}
+                    height={240}
+                    onMomentumScrollEnd={(e, state, context) =>
+                        console.log('index:', state.index)
+                    }
+                    dot={
+                        <View
+                        style={{
+                            backgroundColor: 'rgba(0,0,0,.3)',
+                            width: 10,
+                            height: 10,
+                            borderRadius: 10,
+                            marginLeft: 0,
+                            marginRight: 130,
+                            marginTop: 3,
+                            marginBottom: 10
+                        }}/>
+                    }
+                    activeDot={
+                        <View
+                        style={{
+                            backgroundColor: '#FFF',
+                            width: 15,
+                            height: 15,
+                            borderRadius: 10,
+                            marginLeft: 0,
+                            marginRight: 130,
+                            marginTop: 3,
+                            marginBottom: 10
+                        }}/>
+                    }
+                    paginationStyle={{
+                        bottom: -23,
+                        left: null,
+                        right: 10
+                    }}
+                    loop={false}
+                    >
+                    <View style={styles.slide}>
+                        <TextInput
+                            mode={this.state.nameMode}
+                            value={this.state.name}
+                            label='Name'
+                            placeholder="Enter your full name"
+                            onFocus={() => this.setState({ nameMode: 'flat' })}
+                            onBlur={() => { if(this.state.name.length === 0) { this.setState({ nameMode: 'outlined' }); } }}
+                            onChangeText={this.handleNameChange.bind(this)}
+                            theme={labelStyle}
+                            style={textBoxStyle}
+                        />
 
-                            <TextInput
-                                mode={this.state.emailMode}
-                                value={this.state.email}
-                                label='Email'
-                                placeholder="email@example.com"
-                                onFocus={() => this.setState({ emailMode: 'flat' })}
-                                onBlur={() => { if(this.state.email.length === 0) { this.setState({ emailMode: 'outlined' }); } }}
-                                onChangeText={this.handleEmailChange.bind(this)}
-                                theme={labelStyle}
-                                style={textBoxStyle}
-                            />
+                        <TextInput
+                            mode={this.state.emailMode}
+                            value={this.state.email}
+                            label='Email'
+                            placeholder="email@example.com"
+                            onFocus={() => this.setState({ emailMode: 'flat' })}
+                            onBlur={() => { if(this.state.email.length === 0) { this.setState({ emailMode: 'outlined' }); } }}
+                            onChangeText={this.handleEmailChange.bind(this)}
+                            theme={labelStyle}
+                            style={textBoxStyle}
+                        />
 
-                            <TextInput
-                                secureTextEntry={true}
-                                mode={this.state.passMode}
-                                value={this.state.password}
-                                label='Password'
-                                placeholder="Enter your new password"
-                                onFocus={() => this.setState({ passMode: 'flat' })}
-                                onBlur={() => { if(this.state.password.length === 0) { this.setState({ passMode: 'outlined' }); } }}
-                                onChangeText={this.handlePasswordChange.bind(this)}
-                                theme={labelStyle}
-                                style={textBoxStyle}
-                            />
+                        <TextInput
+                            secureTextEntry={true}
+                            mode={this.state.passMode}
+                            value={this.state.password}
+                            label='Password'
+                            placeholder="Enter your new password"
+                            onFocus={() => this.setState({ passMode: 'flat' })}
+                            onBlur={() => { if(this.state.password.length === 0) { this.setState({ passMode: 'outlined' }); } }}
+                            onChangeText={this.handlePasswordChange.bind(this)}
+                            theme={labelStyle}
+                            style={textBoxStyle}
+                        />
 
-                        </View>
-                        <View style={styles.slide}>
-                            <DatePicker
-                                date={this.state.date}
-                                mode="date"
-                                placeholder="Date of Birth"
-                                format="MM-DD-YYYY"
-                                confirmBtnText="Confirm"
-                                cancelBtnText="Cancel"
-                                customStyles={{
-                                    dateInput: {
-                                    marginLeft: 36,
-                                    borderRadius: 6
-                                    }
-                                }}
-                                showIcon={false}
-                                style={{ marginLeft: '4%', marginBottom: "8%", width: "83%"}}
-                                onDateChange={(date) => {this.setState({date: date})}}
-                                androidMode='spinner'
-                            />
+                    </View>
+                    <View style={styles.slide}>
+                        <DatePicker
+                            date={this.state.date}
+                            mode="date"
+                            placeholder="Date of Birth"
+                            format="MM-DD-YYYY"
+                            confirmBtnText="Confirm"
+                            cancelBtnText="Cancel"
+                            customStyles={{
+                                dateInput: {
+                                marginLeft: 36,
+                                borderRadius: 6
+                                }
+                            }}
+                            showIcon={false}
+                            style={{ marginLeft: '4%', marginBottom: "8%", width: "83%"}}
+                            onDateChange={(date) => {this.setState({date: date})}}
+                            androidMode='spinner'
+                        />
 
-                            <TextInput
-                                mode={this.state.uniMode}
-                                value={this.state.uni}
-                                label='University'
-                                placeholder="Enter your university"
-                                onFocus={() => this.setState({ uniMode: 'flat' })}
-                                onBlur={() => { if(this.state.uni.length === 0) { this.setState({ uniMode: 'outlined' }); } }}
-                                onChangeText={this.handleUniChange.bind(this)}
-                                theme={labelStyle}
-                                style={textBoxStyle}
-                            />
+                        <TextInput
+                            mode={this.state.uniMode}
+                            value={this.state.uni}
+                            label='University'
+                            placeholder="Enter your university"
+                            onFocus={() => this.setState({ uniMode: 'flat' })}
+                            onBlur={() => { if(this.state.uni.length === 0) { this.setState({ uniMode: 'outlined' }); } }}
+                            onChangeText={this.handleUniChange.bind(this)}
+                            theme={labelStyle}
+                            style={textBoxStyle}
+                        />
 
-                            <TextInput
-                                mode={this.state.majorMode}
-                                value={this.state.major}
-                                label='Major'
-                                placeholder="Enter your major"
-                                onFocus={() => this.setState({ majorMode: 'flat' })}
-                                onBlur={() => { if(this.state.major.length === 0) { this.setState({ majorMode: 'outlined' }); } }}
-                                onChangeText={this.handleMajorChange.bind(this)}
-                                theme={labelStyle}
-                                style={textBoxStyle}
-                            />
+                        <TextInput
+                            mode={this.state.majorMode}
+                            value={this.state.major}
+                            label='Major'
+                            placeholder="Enter your major"
+                            onFocus={() => this.setState({ majorMode: 'flat' })}
+                            onBlur={() => { if(this.state.major.length === 0) { this.setState({ majorMode: 'outlined' }); } }}
+                            onChangeText={this.handleMajorChange.bind(this)}
+                            theme={labelStyle}
+                            style={textBoxStyle}
+                        />
 
-                            {/* <Button color='white' onPress={this.handleSubmit.bind(this)}>
-                                Submit
-                            </Button> */}
+                        {/* <Button color='white' onPress={this.handleSubmit.bind(this)}>
+                            Submit
+                        </Button> */}
 
-                        </View>
-                    </Swiper>
+                    </View>
+                </Swiper>
 
-                </View>
+            </View>
         );
     }
 }
