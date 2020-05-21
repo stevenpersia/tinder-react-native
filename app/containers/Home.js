@@ -58,7 +58,6 @@ class Home extends React.Component {
                   name={item.name}
                   courses={item.crscodes}
                   description={item.addinfo.length > MAX_LENGTH ? (item.addinfo.substring(0,MAX_LENGTH) + "...") : item.addinfo}
-                  matchesPage={false}
                   actions
                   onPressRight={() => this.swiper.swipeRight()}
                   onPressLeft={() => this.swiper.swipeLeft()}
