@@ -353,5 +353,14 @@ export default StyleSheet.create({
 		height: 20,
 		fontSize: 20,
 		paddingBottom: 1
+	},
+
+	//COMPONENT - SIGNUP
+	logo: {
+		marginLeft: '40%',
+		marginBottom: '30%',
+		marginTop: '15%',
+		width: 100,
+		height: 100
 	}
 });

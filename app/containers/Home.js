@@ -27,7 +27,6 @@ class Home extends React.Component {
         source={require('../assets/images/bg.png')}
         style={styles.bg}
       >
-        {/* <ProfilePopup /> */}
         <View style={styles.containerHome}>
           <View style={styles.top}>
             <City />
@@ -49,8 +48,8 @@ class Home extends React.Component {
                   description={item.addinfo.length > MAX_LENGTH ? (item.addinfo.substring(0,MAX_LENGTH) + "...") : item.addinfo}
                   matchesPage={false}
                   actions
-                  onPressLeft={() => this.swiper.swipeLeft()}
                   onPressRight={() => this.swiper.swipeRight()}
+                  onPressLeft={() => this.swiper.swipeLeft()}
                 />
               </Card>
             ))}

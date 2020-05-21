@@ -9,11 +9,6 @@ import MessagesScreen from "./containers/Messages";
 import ProfileScreen from "./containers/Profile";
 import Icon from "./components/Icon";
 
-/*In this world, everything is governed by balance. 
-There’s what you stand to gain and what you stand to lose. 
-And when you think you’ve got nothing to lose, 
-you become overconfident.*/
-
 const App = createBottomTabNavigator(
 	{
 		Explore: {
@@ -92,4 +87,4 @@ const App = createBottomTabNavigator(
 	}
 );
 
-export default (false ? SignUpScreen : createAppContainer(App));
+export default (true ? SignUpScreen : createAppContainer(App));
