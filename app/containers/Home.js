@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, ImageBackground } from 'react-native';
+import { View, ImageBackground, AsyncStorage } from 'react-native';
 import CardStack, { Card } from 'react-native-card-stack-swiper';
 import City from '../components/City';
 import Filters from '../components/Filters';
@@ -14,6 +14,18 @@ class Home extends React.Component {
   constructor(props) {
     super(props);
     this.state = { cards: [], fetcher: new Fetcher() };
+  }
+
+  async componentWillMount() {
+    try {
+      let storedEmail = await AsyncStorage.getItem('storedEmail');
+      if(storedEmail === null) {
+        this.props.navigation.navigate('SignUp');
+      }
+    }
+    catch(err) {
+      console.log(err);
+    }
   }
 
   async componentDidMount() {
@@ -59,10 +71,5 @@ class Home extends React.Component {
     );
   }
 }
-// const Home = () => {
-//   const fetcher = new Fetcher();
-
-  
-// };
 
 export default Home;

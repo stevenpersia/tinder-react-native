@@ -1,6 +1,6 @@
 import React from "react";
-import { Text, View } from "react-native";
-import { createBottomTabNavigator, createAppContainer } from "react-navigation";
+import { Text } from "react-native";
+import { createBottomTabNavigator, createAppContainer, createStackNavigator } from "react-navigation";
 import styles from "./assets/styles";
 import SignUpScreen from "./containers/SignUp";
 import HomeScreen from "./containers/Home";
@@ -87,4 +87,18 @@ const App = createBottomTabNavigator(
 	}
 );
 
-export default (true ? SignUpScreen : createAppContainer(App));
+const RootStack = createStackNavigator(
+	{
+		AppScreen: { 
+			screen: App 
+		},
+		SignUp: {
+			screen: SignUpScreen
+		}
+	},
+	{ mode: 'modal', headerMode: 'none' }
+);
+
+// () => this.props.navigation.navigate('SignUp') on Home if signup/login needed
+
+export default createAppContainer(RootStack);
