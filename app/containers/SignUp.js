@@ -28,6 +28,16 @@ const textBoxStyle = {
     marginBottom: "8%"
 };
 
+function validateEmail(email) {
+    const regex = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    return regex.test(email);
+}
+
+function validatePassword(password) {
+    const regex = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])[0-9a-zA-Z]{6,}$/;
+    return regex.test(password);
+}
+
 class SignUp extends React.Component {
     constructor(props) {
         super(props);
@@ -38,20 +48,70 @@ class SignUp extends React.Component {
             uniMode: 'outlined',
             majorMode: 'outlined',
             courseMode: 'outlined',
-            bioMode: 'outlined',
+
             date: null,
             name: "",
             email: "",
             password: "",
             uni: "",
             major: "",
-            course: "",
-            bio: "",
+
+            isNameValid: false,
+            isEmailValid: false,
+            isPasswordValid: false,
+            isUniValid: false,
+            isMajorValid: false
         };
     }
 
+    handleNameChange(text) {
+        if(text.length >= 3 && text.length <= 30) {
+            this.setState({ isNameValid: true, name: text });
+            return;
+        }
+        this.setState({ isNameValid: false, name: text });
+    }
+
+    handleEmailChange(text) {
+        if(validateEmail(text.toLowerCase())) {
+            this.setState({ isEmailValid: true, email: text });
+            return;
+        }
+
+        this.setState({ isEmailValid: false, email: text.toLowerCase() });
+    }
+
+    handlePasswordChange(text) {
+        if(validatePassword(text)) {
+            this.setState({ isPasswordValid: true, password: text });
+            return;
+        }
+        this.setState({ password: text, isPasswordValid: false });
+    }
+
+    handleUniChange(text) {
+        if(text.length >= 6) {
+            this.setState({ isUniValid: true, uni: text });
+            return;
+        }
+        this.setState({ isUniValid: false, uni: text });
+    }
+
+    handleMajorChange(text) {
+        if(text.length >= 6) {
+            this.setState({ isMajorValid: true, major: text });
+            return;
+        }
+        this.setState({ isMajorValid: false, major: text });
+    }
+
     async handleSubmit() {
-        // TODO: validate input
+        if(!this.state.isNameValid || !this.state.isEmailValid || !this.state.isPasswordValid
+            || !this.state.date || !this.state.isUniValid || !this.state.isMajorValid) {
+            console.log(this.state);
+            console.log('invalid inputs');
+            return;
+        }
         const requestHandler = new Fetcher();
         const data = {
             name: this.state.name,
@@ -119,7 +179,7 @@ class SignUp extends React.Component {
                             placeholder="Enter your full name"
                             onFocus={() => this.setState({ nameMode: 'flat' })}
                             onBlur={() => { if(this.state.name.length === 0) { this.setState({ nameMode: 'outlined' }); } }}
-                            onChangeText={(text) => this.setState({ name: text })}
+                            onChangeText={this.handleNameChange.bind(this)}
                             theme={labelStyle}
                             style={textBoxStyle}
                         />
@@ -131,7 +191,7 @@ class SignUp extends React.Component {
                             placeholder="email@example.com"
                             onFocus={() => this.setState({ emailMode: 'flat' })}
                             onBlur={() => { if(this.state.email.length === 0) { this.setState({ emailMode: 'outlined' }); } }}
-                            onChangeText={(text) => this.setState({ email: text })}
+                            onChangeText={this.handleEmailChange.bind(this)}
                             theme={labelStyle}
                             style={textBoxStyle}
                         />
@@ -144,11 +204,13 @@ class SignUp extends React.Component {
                             placeholder="Enter your new password"
                             onFocus={() => this.setState({ passMode: 'flat' })}
                             onBlur={() => { if(this.state.password.length === 0) { this.setState({ passMode: 'outlined' }); } }}
-                            onChangeText={(text) => this.setState({ password: text })}
+                            onChangeText={this.handlePasswordChange.bind(this)}
                             theme={labelStyle}
                             style={textBoxStyle}
                         />
 
+                    </View>
+                    <View style={styles.slide}>
                         <DatePicker
                             date={this.state.date}
                             mode="date"
@@ -167,8 +229,7 @@ class SignUp extends React.Component {
                             onDateChange={(date) => {this.setState({date: date})}}
                             androidMode='spinner'
                         />
-                    </View>
-                    <View style={styles.slide}>
+
                         <TextInput
                             mode={this.state.uniMode}
                             value={this.state.uni}
@@ -176,7 +237,7 @@ class SignUp extends React.Component {
                             placeholder="Enter your university"
                             onFocus={() => this.setState({ uniMode: 'flat' })}
                             onBlur={() => { if(this.state.uni.length === 0) { this.setState({ uniMode: 'outlined' }); } }}
-                            onChangeText={(text) => this.setState({ uni: text })}
+                            onChangeText={this.handleUniChange.bind(this)}
                             theme={labelStyle}
                             style={textBoxStyle}
                         />
@@ -188,96 +249,18 @@ class SignUp extends React.Component {
                             placeholder="Enter your major"
                             onFocus={() => this.setState({ majorMode: 'flat' })}
                             onBlur={() => { if(this.state.major.length === 0) { this.setState({ majorMode: 'outlined' }); } }}
-                            onChangeText={(text) => this.setState({ major: text })}
+                            onChangeText={this.handleMajorChange.bind(this)}
                             theme={labelStyle}
                             style={textBoxStyle}
                         />
 
-                        <TextInput
-                            mode={this.state.courseMode}
-                            value={this.state.course}
-                            label='Courses'
-                            placeholder="Enter your courses"
-                            onFocus={() => this.setState({ courseMode: 'flat' })}
-                            onBlur={() => { if(this.state.course.length === 0) { this.setState({ courseMode: 'outlined' }); } }}
-                            onChangeText={(text) => this.setState({ course: text })}
-                            theme={labelStyle}
-                            style={textBoxStyle}
-                        />
+                        {/* <Button color='white' onPress={this.handleSubmit.bind(this)}>
+                            Submit
+                        </Button> */}
 
-                        <TextInput
-                            mode={this.state.bioMode}
-                            value={this.state.bio}
-                            label='Bio'
-                            placeholder="Enter your bio"
-                            onFocus={() => this.setState({ bioMode: 'flat' })}
-                            onBlur={() => { if(this.state.bio.length === 0) { this.setState({ bioMode: 'outlined' }); } }}
-                            onChangeText={(text) => this.setState({ bio: text })}
-                            theme={labelStyle}
-                            style={textBoxStyle}
-                        />
                     </View>
                 </Swiper>
 
-                    {/* <TextInput
-                    mode={this.state.nameMode}
-                    value={this.state.name}
-                    label='Name'
-                    placeholder="Enter your full name"
-                    onFocus={() => this.setState({ nameMode: 'flat' })}
-                    onBlur={() => { if(this.state.name.length === 0) { this.setState({ nameMode: 'outlined' }); } }}
-                    onChangeText={(text) => this.setState({ name: text })}
-                    theme={labelStyle}
-                    style={textBoxStyle}
-                    />
-
-                    <TextInput
-                    mode={this.state.emailMode}
-                    value={this.state.email}
-                    label='Email'
-                    placeholder="email@example.com"
-                    onFocus={() => this.setState({ emailMode: 'flat' })}
-                    onBlur={() => { if(this.state.email.length === 0) { this.setState({ emailMode: 'outlined' }); } }}
-                    onChangeText={(text) => this.setState({ email: text })}
-                    theme={labelStyle}
-                    style={textBoxStyle}
-                    />
-
-                    <TextInput
-                    secureTextEntry={true}
-                    mode={this.state.passMode}
-                    value={this.state.password}
-                    label='Password'
-                    placeholder="Enter your new password"
-                    onFocus={() => this.setState({ passMode: 'flat' })}
-                    onBlur={() => { if(this.state.password.length === 0) { this.setState({ passMode: 'outlined' }); } }}
-                    onChangeText={(text) => this.setState({ password: text })}
-                    theme={labelStyle}
-                    style={textBoxStyle}
-                    />
-
-                    <DatePicker
-                    date={this.state.date}
-                    mode="date"
-                    placeholder="Date of Birth"
-                    format="MM-DD-YYYY"
-                    confirmBtnText="Confirm"
-                    cancelBtnText="Cancel"
-                    customStyles={{
-                        dateInput: {
-                        marginLeft: 36,
-                        borderRadius: 6
-                        }
-                    }}
-                    showIcon={false}
-                    style={{ marginLeft: '4%', marginBottom: "8%" }}
-                    onDateChange={(date) => {this.setState({date: date})}}
-                    androidMode='spinner'
-                    /> */}
-
-                    {/* <Button mode='outlined' color='white' onPress={this.handleSubmit.bind(this)}>
-                        Submit
-                    </Button> */}
             </View>
         );
     }
