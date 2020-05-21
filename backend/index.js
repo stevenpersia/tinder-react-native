@@ -3,6 +3,7 @@ const app = require("express")();
 const http = require('http').createServer(app);
 const io = require('socket.io')(http);
 const bodyParser = require("body-parser");
+const bcrypt = require('bcrypt');
 const urlEncodedParser = bodyParser.urlencoded({ extended: false });
 // const sendEmail = require("./utils/emailer").sendEmail;
 const DatabaseManager = require("./utils/DatabaseManager");
@@ -161,7 +162,7 @@ app.post("/newProfileCard", urlEncodedParser, (req, res) => {
                 // update entry in the database
                 DatabaseManager.updateProfileCard(existingCard, { user_id: profileCard.user_id })
                 .then((updateResult) => {
-                    res.status(200).send("Success");
+                    res.status(201).send("Success");
                 })
                 .catch((err) => {
                     // unsuccessful insert, reply back with unsuccess response code
@@ -175,7 +176,7 @@ app.post("/newProfileCard", urlEncodedParser, (req, res) => {
             
             // card doesn't exist
             DatabaseManager.insertProfileCard(profileCard).then((result) => {
-                res.status(200).send("Success");
+                res.status(201).send("Success");
             }).catch((err) => {
                 // unsuccessful insert, reply back with unsuccess response code
                 console.log(err);
@@ -196,12 +197,15 @@ app.post("/new-user", urlEncodedParser, (req, res) => {
     const requestData = {
         name: req.body.name,
         email: req.body.email,
+        password: bcrypt.hashSync(req.body.password, 10),
         gender: req.body.gender,
         uni: req.body.uni,
         major: req.body.major,
         age: Number(req.body.age),
         image: req.body.image
     };
+
+
 
     // database *Users*
     DatabaseManager.insertUser(requestData).then((result) => {
@@ -214,8 +218,35 @@ app.post("/new-user", urlEncodedParser, (req, res) => {
         res.status(500).send("Insert Failed");
     });
 
-    res.status(201).redirect("/");
+    res.status(201).send("Success");
 });
+
+app.post("/login", urlEncodedParser, (req, res) => {
+    const requestData = {
+        email: req.body.email,
+        password: req.body.password
+    }
+
+    DatabaseManager.fetchUsers({ email: requestData.email }).then((users) => {
+        if(users.length < 1) {
+            res.status(401).send('Invalid Email');
+            return;
+        }
+
+        let user = users[0];
+        if(bcrypt.compareSync(requestData.password, user.password)) {
+            // Passwords match
+            res.status(200).send(JSON.stringify(user));
+        } else {
+            // Passwords don't match
+            res.status(401).send('Invalid password');
+        }
+        
+    }).catch((err) => {
+        console.log(err);
+        res.status(500).send('Server error');
+    });
+})
 
 /* Socket Listeners for chat */
 
