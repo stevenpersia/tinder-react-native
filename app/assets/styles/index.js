@@ -362,5 +362,11 @@ export default StyleSheet.create({
 		marginTop: '15%',
 		width: 100,
 		height: 100
+	},
+
+	slide: {
+		flex: 1,
+		justifyContent: 'center',
+		backgroundColor: 'transparent'
 	}
 });
