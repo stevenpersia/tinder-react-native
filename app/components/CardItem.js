@@ -8,7 +8,6 @@ const CardItem = ({
   actions,
   description,
   image,
-  matchesPage,
   name,
   courses,
   onPressLeft,
@@ -22,7 +21,7 @@ const CardItem = ({
     {
       borderRadius: 8,
       width: variant ? fullWidth / 2 - 30 : fullWidth - 80,
-      height: matchesPage ? (variant ? 120 : 300) : (variant ? 110 : 200),
+      height: variant ? 120 : 200,
       margin: variant ? 0 : 20
     }
   ];
