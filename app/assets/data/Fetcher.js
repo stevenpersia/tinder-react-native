@@ -9,6 +9,17 @@ class Fetcher {
         this.PORT = customPort ? customPort : PORT;
     }
 
+    async requestSignUp(data) {
+        return (await fetch(this.ENDPOINT + ":" + String(this.PORT) + "/new-user", {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(data)
+        })).status;
+
+    }
+
     async fetchCards(email) {        
         return await (await fetch(this.ENDPOINT + ":" + String(this.PORT) 
         + "/fetchProfileCards?email=" + email)).json();
