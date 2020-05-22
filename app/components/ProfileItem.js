@@ -12,16 +12,10 @@ const ProfileItem = ({
   info4,
   location,
   matches,
-  name
+  name,
 }) => {
   return (
     <View style={styles.containerProfileItem}>
-      {/* <View style={styles.matchesProfileItem}>
-        <Text style={styles.matchesTextProfileItem}>
-          <Icon name="heart" /> {matches}% Match!
-        </Text>
-      </View> */}
-
       <Text style={styles.name}>{name}</Text>
 
       <Text style={styles.descriptionProfileItem}>
@@ -30,21 +24,21 @@ const ProfileItem = ({
 
       <View style={styles.info}>
         <Text style={styles.iconProfile}>
-          <Icon name="user" />
+          <Icon name='user' />
         </Text>
         <Text style={styles.infoContent}>{info1}</Text>
       </View>
 
       <View style={styles.info}>
         <Text style={styles.iconProfile}>
-          <Icon name="circle" />
+          <Icon name='circle' />
         </Text>
         <Text style={styles.infoContent}>{info2}</Text>
       </View>
 
       <View style={styles.info}>
         <Text style={styles.iconProfile}>
-          <Icon name="hashtag" />
+          <Icon name='hashtag' />
         </Text>
         <Text style={styles.infoContent}>{info3}</Text>
       </View>
