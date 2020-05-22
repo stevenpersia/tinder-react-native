@@ -373,5 +373,22 @@ export default StyleSheet.create({
 	wrapper: {
 		// marginTop: "-17%",
 		marginBottom: 100
+	},
+
+	//COMPONENT - LOGIN
+	loginlogo: {
+		marginBottom: 80,
+		marginLeft: 150,
+		marginTop: 100,
+		width: 105,
+		height: 100
+	},
+
+	loginbutt: {
+		backgroundColor: "#013d38",
+		borderRadius: 10,
+		marginTop: 40,
+		width: 150,
+		marginLeft: 110
 	}
 });

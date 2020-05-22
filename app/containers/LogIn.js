@@ -2,7 +2,6 @@ import React from 'react';
 import { View, Text, Image } from 'react-native';
 import styles from '../assets/styles';
 import { DefaultTheme, Provider as PaperProvider, TextInput, RadioButton, Dialog, Button } from 'react-native-paper';
-import DatePicker from 'react-native-datepicker';
 import Fetcher from '../assets/data/Fetcher';
 
 const labelStyle = { 
@@ -51,7 +50,6 @@ class LogIn extends React.Component {
         };
     }
 
-
     handleEmailChange(text) {
         if(validateEmail(text.toLowerCase())) {
             this.setState({ isEmailValid: true, email: text });
@@ -89,7 +87,7 @@ class LogIn extends React.Component {
     render() {
         return (
             <View style={{backgroundColor: "#164e48", width: "100%", height: "100%", padding: '3%' }}>
-                <Image style={styles.logo} source={require('../assets/images/Findr_white2x.png')}/>
+                <Image style={styles.loginlogo} source={require('../assets/images/Findr_white2x.png')}/>
                 <TextInput
                     mode={this.state.emailMode}
                     value={this.state.email}
@@ -114,6 +112,10 @@ class LogIn extends React.Component {
                     theme={labelStyle}
                     style={textBoxStyle}
                 />
+
+                <Button mode="contained" style={styles.loginbutt}>
+                    Log in
+                </Button>
             </View>
         );
     }

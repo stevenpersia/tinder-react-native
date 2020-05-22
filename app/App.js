@@ -29,7 +29,7 @@ const App = createBottomTabNavigator(
 			screen: MatchesScreen,
 			navigationOptions: {
 				tabBarIcon: ({ focused }) => {
-					const iconFocused = focused ? "#2c9c91" : "#4a4949"; //#363636
+					const iconFocused = focused ? "#2c9c91" : "#4a4949"; 
 					return (
 						<Text style={[styles.iconMenu, { color: iconFocused, marginTop: "15%" }]}>
 							<Icon name="heart" />
