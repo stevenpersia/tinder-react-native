@@ -13,6 +13,8 @@ const MAX_LENGTH = 150;
 class Home extends React.Component {
   constructor(props) {
     super(props);
+    this.props.navigation.addListener('didFocus', () => this.render());
+    
     this.state = { cards: [], fetcher: new Fetcher(), dataLoadRequired: true };
   }
 
