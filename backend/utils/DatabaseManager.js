@@ -184,12 +184,31 @@ function updateChat(updatedChatObject, queryObject) {
     });
 }
 
+function updateUser(updatedUserObject, queryObject) {
+
+    return new Promise(function(resolve, reject) {
+        getCollection(COLLECTION_USERS).then((collection) => {
+            updateDoc = { $set: updatedUserObject }
+            collection.updateOne(queryObject, updateDoc, function(err, updateResult) {
+                if(err) reject(err);
+
+                resolve(updateResult);
+            });
+
+        }).catch((reason) => {
+            reject(reason);
+        });
+
+    });
+}
+
 module.exports.insertUser = insertUser;
 module.exports.insertProfileCard = insertProfileCard;
 module.exports.insertChat = insertChat;
 
 module.exports.updateProfileCard = updateProfileCard;
 module.exports.updateChat = updateChat;
+module.exports.updateUser = updateUser;
 
 module.exports.closeConnection = closeConnection;
 
