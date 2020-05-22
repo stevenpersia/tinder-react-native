@@ -3,6 +3,7 @@ import { Text } from "react-native";
 import { createBottomTabNavigator, createAppContainer, createStackNavigator } from "react-navigation";
 import styles from "./assets/styles";
 import SignUpScreen from "./containers/SignUp";
+import LogInScreen from "./containers/LogIn";
 import HomeScreen from "./containers/Home";
 import MatchesScreen from "./containers/Matches";
 import MessagesScreen from "./containers/Messages";
@@ -94,6 +95,9 @@ const RootStack = createStackNavigator(
 		},
 		SignUp: {
 			screen: SignUpScreen
+		},
+		LogIn: {
+			screen: LogInScreen
 		}
 	},
 	{ mode: 'modal', headerMode: 'none' }

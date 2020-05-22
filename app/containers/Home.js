@@ -20,7 +20,7 @@ class Home extends React.Component {
     try {
       let storedEmail = await AsyncStorage.getItem('storedEmail');
       if(storedEmail === null) {
-        this.props.navigation.navigate('SignUp');
+        this.props.navigation.navigate('AppScreen');
       }
     }
     catch(err) {
@@ -54,7 +54,7 @@ class Home extends React.Component {
             {this.state.cards.map((item, index) => (
               <Card key={index}>
                 <CardItem
-                  image={ { uri: item.image } }
+                  image={{ uri: item.image }}
                   name={item.name}
                   courses={item.crscodes}
                   description={item.addinfo.length > MAX_LENGTH ? (item.addinfo.substring(0,MAX_LENGTH) + "...") : item.addinfo}
