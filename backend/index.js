@@ -205,11 +205,10 @@ app.post("/new-user", urlEncodedParser, (req, res) => {
     };
 
 
-
-    // database *Users*
     DatabaseManager.insertUser(requestData).then((result) => {
         // sendEmail(requestData);
         // reply with success response code
+        res.status(201).send("Success");
 
     }).catch((err) => {
         // unsuccessful insert, reply back with unsuccess response code
@@ -217,7 +216,6 @@ app.post("/new-user", urlEncodedParser, (req, res) => {
         res.status(500).send("Insert Failed");
     });
 
-    res.status(201).send("Success");
 });
 
 app.post("/login", urlEncodedParser, (req, res) => {

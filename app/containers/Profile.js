@@ -6,7 +6,8 @@ import {
   View,
   Text,
   ImageBackground,
-  TouchableOpacity
+  TouchableOpacity,
+  AsyncStorage
 } from 'react-native';
 import ProfileItem from '../components/ProfileItem';
 import Icon from '../components/Icon';
@@ -20,7 +21,7 @@ class Profile extends React.Component {
   }
 
   async componentDidMount() {
-    let user = await this.state.fetcher.loadSelfProfile('harsh@gmail.com');
+    let user = await this.state.fetcher.loadSelfProfile(await AsyncStorage.getItem('storedEmail'));
     this.setState({ profile: user });
   }
 

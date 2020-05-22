@@ -13,14 +13,14 @@ const MAX_LENGTH = 150;
 class Home extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { cards: [], fetcher: new Fetcher() };
+    this.state = { cards: [], fetcher: new Fetcher(), dataLoadRequired: true };
   }
 
   async componentWillMount() {
     try {
       let storedEmail = await AsyncStorage.getItem('storedEmail');
       if(storedEmail === null) {
-        this.props.navigation.navigate('AppScreen');
+        this.props.navigation.navigate('LogIn');
       }
     }
     catch(err) {
@@ -29,11 +29,24 @@ class Home extends React.Component {
   }
 
   async componentDidMount() {
-    const data = await this.state.fetcher.loadData("harsh@gmail.com");
-    this.setState({ cards: data });
+    let storedEmail = await AsyncStorage.getItem('storedEmail');
+
+    if(storedEmail !== null && this.state.dataLoadRequired) {
+      const data = await this.state.fetcher.loadData(storedEmail);
+      this.setState({ cards: data, dataLoadRequired: false });
+    }
+  }
+
+  async loadData() {
+    const data = await this.state.fetcher.loadData(await AsyncStorage.getItem('storedEmail'));
+    this.setState({ cards: data, dataLoadRequired: false });
   }
 
   render() {
+    if(this.state.dataLoadRequired) {
+      this.loadData();
+    }
+    
     return (
       <ImageBackground
         source={require('../assets/images/bg.png')}
