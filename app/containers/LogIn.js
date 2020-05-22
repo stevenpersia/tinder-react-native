@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text, Image } from 'react-native';
+import { View, AsyncStorage, Image } from 'react-native';
 import styles from '../assets/styles';
 import { DefaultTheme, Provider as PaperProvider, TextInput, RadioButton, Dialog, Button } from 'react-native-paper';
 import Fetcher from '../assets/data/Fetcher';
@@ -33,8 +33,7 @@ function validateEmail(email) {
 }
 
 function validatePassword(password) {
-    const regex = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])[0-9a-zA-Z]{6,}$/;
-    return regex.test(password);
+    return password.length > 2;
 }
 
 class LogIn extends React.Component {
@@ -76,12 +75,19 @@ class LogIn extends React.Component {
         const data = {
             email: this.state.email,
             password: this.state.password,
-            // image: req.body.image
         }
 
-        const signUpStatus = await requestHandler.requestSignUp(data);
-        // check if it works
-        console.log('Sign up status: ' + signUpStatus);
+        const logInAttempt = await requestHandler.logIn(data);
+        if(logInAttempt.success) {
+            // store email
+            const credSaveStatus = await AsyncStorage.setItem('storedEmail', logInAttempt.user.email);
+            this.props.navigation.navigate('AppScreen');
+        }
+        else {
+            // let user know they fucked up
+            console.log(logInAttempt);
+        }
+
     }
 
     render() {
@@ -113,7 +119,7 @@ class LogIn extends React.Component {
                     style={textBoxStyle}
                 />
 
-                <Button mode="contained" style={styles.loginbutt}>
+                <Button mode="contained" onPress={this.handleSubmit.bind(this)} style={styles.loginbutt}>
                     Log in
                 </Button>
             </View>

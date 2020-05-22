@@ -6,6 +6,7 @@ var client = new MongoClient(MONGO_URL, { useUnifiedTopology: true, useNewUrlPar
 
 const COLLECTION_USERS = "Users";
 const COLLECTION_PROFILE_CARDS = "ProfileCards";
+const COLLECTION_CHATS = "ChatStorage";
 const DB = "test";
 
 /**
@@ -135,10 +136,84 @@ function fetchProfileCards(params) {
     });
 }
 
+function fetchChat(chat_id) {
+
+    return new Promise(function(resolve, reject) {
+        getCollection(COLLECTION_CHATS).then((collection) => {
+            collection.find({ uid: chat_id }).toArray(function(err, result) {
+                if(err) { reject(err); }
+
+                resolve(result);
+            });
+
+        }).catch((reason) => {
+            reject(reason);
+        })
+    });
+}
+
+function insertChat(chat) {
+    
+    return new Promise(function(resolve, reject) {
+        getCollection(COLLECTION_CHATS).then((collection) => {
+            collection.insertOne(chat).then((result) => {
+                resolve(result);
+            }).catch((err) => {
+                reject(err);
+            });
+        }).catch((reason) => {
+            reject(reason);
+        });
+    });
+}
+
+function updateChat(updatedChatObject, queryObject) {
+    
+    return new Promise(function(resolve, reject) {
+        getCollection(COLLECTION_CHATS).then((collection) => {
+            updateDoc = { $set: { chat: updatedChatObject } }
+            collection.updateOne(queryObject, updateDoc, function(err, updateResult) {
+                if(err) reject(err);
+
+                resolve(updateResult);
+            });
+
+        }).catch((reason) => {
+            reject(reason);
+        });
+    });
+}
+
+function updateUser(updatedUserObject, queryObject) {
+
+    return new Promise(function(resolve, reject) {
+        getCollection(COLLECTION_USERS).then((collection) => {
+            updateDoc = { $set: updatedUserObject }
+            collection.updateOne(queryObject, updateDoc, function(err, updateResult) {
+                if(err) reject(err);
+
+                resolve(updateResult);
+            });
+
+        }).catch((reason) => {
+            reject(reason);
+        });
+
+    });
+}
+
 module.exports.insertUser = insertUser;
 module.exports.insertProfileCard = insertProfileCard;
+module.exports.insertChat = insertChat;
+
 module.exports.updateProfileCard = updateProfileCard;
+module.exports.updateChat = updateChat;
+module.exports.updateUser = updateUser;
+
 module.exports.closeConnection = closeConnection;
+
 module.exports.fetchUsers = fetchUsers;
 module.exports.fetchProfileCards = fetchProfileCards;
+module.exports.fetchChat = fetchChat;
+
 module.exports.getCollection = getCollection;

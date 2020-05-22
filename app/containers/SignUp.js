@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text, Image } from 'react-native';
+import { View, AsyncStorage, Image } from 'react-native';
 import styles from '../assets/styles';
 import { DefaultTheme, Provider as PaperProvider, TextInput, RadioButton, Dialog, Button } from 'react-native-paper';
 import DatePicker from 'react-native-datepicker';
@@ -124,8 +124,10 @@ class SignUp extends React.Component {
         }
 
         const signUpStatus = await requestHandler.requestSignUp(data);
-        // check if it works
-        console.log('Sign up status: ' + signUpStatus);
+        if(signUpStatus === 201) {
+            await AsyncStorage.setItem('storedEmail', data.email);
+            this.props.navigation.navigate('AppScreen');
+        }
     }
 
     render() {
