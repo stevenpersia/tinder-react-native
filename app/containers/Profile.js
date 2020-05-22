@@ -73,7 +73,7 @@ class Profile extends React.Component {
               </Text>
             </TouchableOpacity>
   
-            <TouchableOpacity style={styles.roundedButton}>
+            <TouchableOpacity style={styles.roundedButton} onPress={() => AsyncStorage.removeItem('storedEmail')}>
               <Text style={styles.iconButton}>
                 <Icon name="chat" />
               </Text>

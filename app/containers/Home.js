@@ -13,6 +13,8 @@ const MAX_LENGTH = 150;
 class Home extends React.Component {
   constructor(props) {
     super(props);
+    this.props.navigation.addListener('didFocus', () => this.render());
+    
     this.state = { cards: [], fetcher: new Fetcher(), dataLoadRequired: true };
   }
 
@@ -43,10 +45,14 @@ class Home extends React.Component {
   }
 
   render() {
-    if(this.state.dataLoadRequired) {
-      this.loadData();
-    }
-    
+    AsyncStorage.getItem('storedEmail').then((value) => {
+      if(this.state.dataLoadRequired && value !== null) {
+        this.loadData();
+      }
+    }).catch((err) => {
+      console.log(err);
+    });
+
     return (
       <ImageBackground
         source={require('../assets/images/bg.png')}
