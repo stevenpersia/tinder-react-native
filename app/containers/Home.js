@@ -43,9 +43,13 @@ class Home extends React.Component {
   }
 
   render() {
-    if(this.state.dataLoadRequired) {
-      this.loadData();
-    }
+    AsyncStorage.getItem('storedEmail').then((value) => {
+      if(value !== null && this.state.dataLoadRequired) {
+        this.loadData();
+      }
+    }).catch((err) => {
+      console.log(er);
+    });
     
     return (
       <ImageBackground

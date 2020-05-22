@@ -78,11 +78,6 @@ class Fetcher {
         return profileCards;
     }
 
-    async loadSelfProfile(email) {
-        let user = (await this.fetchUser(email));
-        return user[0];
-    }
-
     mapUsersToHashTable(users) {
         var dict = {};
     

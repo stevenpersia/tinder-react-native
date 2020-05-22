@@ -389,6 +389,7 @@ export default StyleSheet.create({
 		borderRadius: 10,
 		marginTop: 40,
 		width: 150,
-		marginLeft: 110
+		marginLeft: 110,
+		
 	}
 });

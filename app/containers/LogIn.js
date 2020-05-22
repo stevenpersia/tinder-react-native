@@ -4,26 +4,32 @@ import styles from '../assets/styles';
 import { DefaultTheme, Provider as PaperProvider, TextInput, RadioButton, Dialog, Button } from 'react-native-paper';
 import Fetcher from '../assets/data/Fetcher';
 
-const labelStyle = { 
-    colors: { 
-        text: 'white', 
-        placeholder: 'darkgrey',
-        label: '#2c9c91'
-    } 
-};
-
-// const theme = {
-//     colors: {
-//         ...DefaultTheme.colors,
-//         accent: "#FFFFFF"
-//     },
+// const labelStyle = { 
+//     colors: { 
+        
+//     } 
 // };
+
+const theme = {
+    colors: {
+        ...DefaultTheme.colors,
+        primary: "transparent",
+        text: 'white', 
+        placeholder: 'lightgrey',
+        labelColor: 'black',
+    },
+};
 
 const textBoxStyle = { 
     width: '75%',
-    borderRadius: 50,
+    height: 50,
+    borderBottomLeftRadius: 30,
+    borderBottomRightRadius: 30,
+    borderTopLeftRadius: 30,
+    borderTopRightRadius: 30,
     alignSelf: 'center',
-    backgroundColor: 'transparent',
+    backgroundColor: "#5EA39D",
+    opacity: 0.5,
     marginBottom: "8%"
 };
 
@@ -40,10 +46,10 @@ class LogIn extends React.Component {
     constructor(props) {
         super(props);
         this.state = { 
-            emailMode: 'outlined',
-            passMode: 'outlined',
             email: "",
             password: "",
+            emailLabel: "Email",
+            passLabel: "Password", 
             isEmailValid: false,
             isPasswordValid: false,
         };
@@ -95,27 +101,29 @@ class LogIn extends React.Component {
             <View style={{backgroundColor: "#164e48", width: "100%", height: "100%", padding: '3%' }}>
                 <Image style={styles.loginlogo} source={require('../assets/images/Findr_white2x.png')}/>
                 <TextInput
-                    mode={this.state.emailMode}
+                    underlineColor="transparent"
+                    mode={"flat"}
                     value={this.state.email}
-                    label='Email'
+                    label={this.state.emailLabel}
+                    onFocus={() => this.setState({emailLabel:""})}
+                    onBlur={() => this.setState({ emailLabel: this.state.email.length === 0 ? "Email" : "" })}
                     placeholder="email@example.com"
-                    onFocus={() => this.setState({ emailMode: 'flat' })}
-                    onBlur={() => { if(this.state.email.length === 0) { this.setState({ emailMode: 'outlined' }); } }}
                     onChangeText={this.handleEmailChange.bind(this)}
-                    theme={labelStyle}
+                    theme={theme}
                     style={textBoxStyle}
                 />
 
                 <TextInput
+                    underlineColor="transparent"
                     secureTextEntry={true}
-                    mode={this.state.passMode}
+                    mode={"flat"}
                     value={this.state.password}
-                    label='Password'
-                    placeholder="Enter your new password"
-                    onFocus={() => this.setState({ passMode: 'flat' })}
-                    onBlur={() => { if(this.state.password.length === 0) { this.setState({ passMode: 'outlined' }); } }}
+                    label={this.state.passLabel}
+                    onFocus={() => this.setState({ passLabel: "" })}
+                    onBlur={() => this.setState({ passLabel: this.state.password.length === 0 ? "Password" : "" })}
+                    placeholder="Enter your Password"
                     onChangeText={this.handlePasswordChange.bind(this)}
-                    theme={labelStyle}
+                    theme={theme}
                     style={textBoxStyle}
                 />
 
