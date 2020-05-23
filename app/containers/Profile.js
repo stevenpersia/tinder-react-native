@@ -43,8 +43,8 @@ class Profile extends React.Component {
   }
 
   async componentDidMount() {
-    let user = await this.state.fetcher.loadSelfProfile('harsh@gmail.com');
-    this.setState({ profile: user });
+    let user = await this.state.fetcher.fetchUser(await AsyncStorage.getItem('storedEmail'));
+    this.setState({ profile: user[0] });
   }
 
   render() {

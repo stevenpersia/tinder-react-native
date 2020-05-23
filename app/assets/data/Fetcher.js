@@ -34,6 +34,40 @@ class Fetcher {
     return users;
   }
 
+  async requestSignUp(data) {
+    return (await fetch(this.ENDPOINT + ":" + String(this.PORT) + "/new-user", {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(data)
+    })).status;
+
+  }
+
+  async logIn(data) {
+    let logInRes = (await (fetch(this.ENDPOINT + ":" + String(this.PORT) + "/login", {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(data)
+    })));
+
+    if(logInRes.status !== 200) {
+      return { success: false, user: null };
+    }
+
+    let user = await logInRes.json();
+    return { success: true, user }
+  }
+
+  async fetchCards(email) {        
+    return await (await fetch(this.ENDPOINT + ":" + String(this.PORT) 
+    + "/fetchProfileCards?email=" + email)).json();
+  }
+
+
   async fetchUser(email) {
     return await (
       await fetch(

@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, ImageBackground } from 'react-native';
+import { View, ImageBackground, AsyncStorage } from 'react-native';
 import CardStack, { Card } from 'react-native-card-stack-swiper';
 import City from '../components/City';
 import Filters from '../components/Filters';
@@ -13,21 +13,51 @@ const MAX_LENGTH = 150;
 class Home extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { cards: [], fetcher: new Fetcher() };
+    this.props.navigation.addListener('didFocus', () => this.render());
+    
+    this.state = { cards: [], fetcher: new Fetcher(), dataLoadRequired: true };
+  }
+
+  async componentWillMount() {
+    try {
+      let storedEmail = await AsyncStorage.getItem('storedEmail');
+      if(storedEmail === null) {
+        this.props.navigation.navigate('LogIn');
+      }
+    }
+    catch(err) {
+      console.log(err);
+    }
   }
 
   async componentDidMount() {
-    const data = await this.state.fetcher.loadData("harsh@gmail.com");
-    this.setState({ cards: data });
+    let storedEmail = await AsyncStorage.getItem('storedEmail');
+
+    if(storedEmail !== null && this.state.dataLoadRequired) {
+      const data = await this.state.fetcher.loadData(storedEmail);
+      this.setState({ cards: data, dataLoadRequired: false });
+    }
+  }
+
+  async loadData() {
+    const data = await this.state.fetcher.loadData(await AsyncStorage.getItem('storedEmail'));
+    this.setState({ cards: data, dataLoadRequired: false });
   }
 
   render() {
+    AsyncStorage.getItem('storedEmail').then((value) => {
+      if(value !== null && this.state.dataLoadRequired) {
+        this.loadData();
+      }
+    }).catch((err) => {
+      console.log(er);
+    });
+    
     return (
       <ImageBackground
         source={require('../assets/images/bg.png')}
         style={styles.bg}
       >
-        {/* <ProfilePopup /> */}
         <View style={styles.containerHome}>
           <View style={styles.top}>
             <City />
@@ -43,14 +73,13 @@ class Home extends React.Component {
             {this.state.cards.map((item, index) => (
               <Card key={index}>
                 <CardItem
-                  image={ { uri: item.image } }
+                  image={{ uri: item.image }}
                   name={item.name}
                   courses={item.crscodes}
                   description={item.addinfo.length > MAX_LENGTH ? (item.addinfo.substring(0,MAX_LENGTH) + "...") : item.addinfo}
-                  matchesPage={false}
                   actions
-                  onPressLeft={() => this.swiper.swipeLeft()}
                   onPressRight={() => this.swiper.swipeRight()}
+                  onPressLeft={() => this.swiper.swipeLeft()}
                 />
               </Card>
             ))}
@@ -60,10 +89,5 @@ class Home extends React.Component {
     );
   }
 }
-// const Home = () => {
-//   const fetcher = new Fetcher();
-
-  
-// };
 
 export default Home;

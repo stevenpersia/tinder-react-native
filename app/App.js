@@ -1,18 +1,14 @@
 import React from "react";
-import { Text, View } from "react-native";
-import { createBottomTabNavigator, createAppContainer } from "react-navigation";
+import { Text } from "react-native";
+import { createBottomTabNavigator, createAppContainer, createStackNavigator } from "react-navigation";
 import styles from "./assets/styles";
 import SignUpScreen from "./containers/SignUp";
+import LogInScreen from "./containers/LogIn";
 import HomeScreen from "./containers/Home";
 import MatchesScreen from "./containers/Matches";
 import MessagesScreen from "./containers/Messages";
 import ProfileScreen from "./containers/Profile";
 import Icon from "./components/Icon";
-
-/*In this world, everything is governed by balance. 
-There’s what you stand to gain and what you stand to lose. 
-And when you think you’ve got nothing to lose, 
-you become overconfident.*/
 
 const App = createBottomTabNavigator(
 	{
@@ -33,7 +29,7 @@ const App = createBottomTabNavigator(
 			screen: MatchesScreen,
 			navigationOptions: {
 				tabBarIcon: ({ focused }) => {
-					const iconFocused = focused ? "#2c9c91" : "#4a4949"; //#363636
+					const iconFocused = focused ? "#2c9c91" : "#4a4949"; 
 					return (
 						<Text style={[styles.iconMenu, { color: iconFocused, marginTop: "15%" }]}>
 							<Icon name="heart" />
@@ -92,4 +88,21 @@ const App = createBottomTabNavigator(
 	}
 );
 
-export default (false ? SignUpScreen : createAppContainer(App));
+const RootStack = createStackNavigator(
+	{
+		AppScreen: { 
+			screen: App 
+		},
+		SignUp: {
+			screen: SignUpScreen
+		},
+		LogIn: {
+			screen: LogInScreen
+		}
+	},
+	{ mode: 'modal', headerMode: 'none' }
+);
+
+// () => this.props.navigation.navigate('SignUp') on Home if signup/login needed
+
+export default createAppContainer(RootStack);
