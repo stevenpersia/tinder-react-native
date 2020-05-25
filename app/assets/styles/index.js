@@ -336,22 +336,60 @@ export default StyleSheet.create({
     paddingHorizontal: 20,
   },
 
-  // MENU
-  tabButton: {
-    paddingTop: 20,
-    paddingBottom: 30,
-    alignItems: 'center',
-    justifyContent: 'center',
-    flex: 1,
-  },
-  tabButtonText: {
-    textTransform: 'uppercase',
-  },
-  // Icon size
-  iconMenu: {
-    fontFamily: ICON_FONT,
-    height: 20,
-    fontSize: 20,
-    paddingBottom: 1,
-  },
+	// MENU
+	tabButton: {
+		paddingTop: 20,
+		paddingBottom: 30,
+		alignItems: "center",
+		justifyContent: "center",
+		flex: 1
+	},
+	tabButtonText: {
+		textTransform: "uppercase"
+	},
+	// Icon size 
+	iconMenu: {
+		fontFamily: ICON_FONT,
+		height: 20,
+		fontSize: 20,
+		paddingBottom: 1
+	},
+
+	//COMPONENT - SIGNUP
+	logo: {
+		marginLeft: '40%',
+		marginBottom: 40,
+		marginTop: 100,
+		width: 100,
+		height: 100
+	},
+
+	slide: {
+		flex: 1,
+		justifyContent: 'center',
+		backgroundColor: 'transparent'
+	},
+
+	wrapper: {
+		// marginTop: "-17%",
+		marginBottom: 100
+	},
+
+	//COMPONENT - LOGIN
+	loginlogo: {
+		marginBottom: 80,
+		marginLeft: 150,
+		marginTop: 100,
+		width: 105,
+		height: 100
+	},
+
+	loginbutt: {
+		backgroundColor: "#013d38",
+		borderRadius: 10,
+		marginTop: 40,
+		width: 150,
+		marginLeft: 110,
+		
+	}
 });

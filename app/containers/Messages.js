@@ -12,6 +12,8 @@ import Message from '../components/Message';
 import Icon from '../components/Icon';
 import Demo from '../assets/data/demo.js';
 
+/* Look into createStackNavigator for this page */
+
 const Messages = () => {
   return (
     <ImageBackground

@@ -205,11 +205,10 @@ app.post("/new-user", urlEncodedParser, (req, res) => {
     };
 
 
-
-    // database *Users*
     DatabaseManager.insertUser(requestData).then((result) => {
         // sendEmail(requestData);
         // reply with success response code
+        res.status(201).send("Success");
 
     }).catch((err) => {
         // unsuccessful insert, reply back with unsuccess response code
@@ -217,7 +216,6 @@ app.post("/new-user", urlEncodedParser, (req, res) => {
         res.status(500).send("Insert Failed");
     });
 
-    res.status(201).send("Success");
 });
 
 app.post("/login", urlEncodedParser, (req, res) => {
@@ -249,44 +247,44 @@ app.post("/login", urlEncodedParser, (req, res) => {
 
 /* Socket Listeners for chat */
 
-// io.on('connection', (socket) => {
+io.on('connection', (socket) => {
 
-//     socket.on('login', (msg) => {
-//         DatabaseManager.fetchChat( (new Chat(msg.from, msg.to)).uid ).then((chat) => {
-//             if(chat.length < 1) {
-//                 // chat with id = hash(from, to) doesn't exist, so try reverse order
-//                 DatabaseManager.fetchChat( (new Chat(msg.to, msg.from)).uid ).then((chat) => {
-//                     if(chat.length < 1) {
-//                         chat = new Chat(msg.from, msg.to);
+    socket.on('login', (msg) => {
+        DatabaseManager.fetchChat( (new Chat(msg.from, msg.to)).uid ).then((chat) => {
+            if(chat.length < 1) {
+                // chat with id = hash(from, to) doesn't exist, so try reverse order
+                DatabaseManager.fetchChat( (new Chat(msg.to, msg.from)).uid ).then((chat) => {
+                    if(chat.length < 1) {
+                        chat = new Chat(msg.from, msg.to);
 
-//                         DatabaseManager.insertChat({ uid: chat.uid, chat }).then((result) => {
-//                             socket.join(chat.uid);
-//                         })
-//                         .catch((err) => {
-//                             socket.emit('chat-connection-failed');
-//                         });
+                        DatabaseManager.insertChat({ uid: chat.uid, chat }).then((result) => {
+                            socket.join(chat.uid);
+                        })
+                        .catch((err) => {
+                            socket.emit('chat-connection-failed');
+                        });
 
-//                     }
-//                     else {
-//                         socket.join(chat.uid);
-//                     }
+                    }
+                    else {
+                        socket.join(chat.uid);
+                    }
 
-//                 }).catch((err) => {
-//                     socket.emit('chat-connection-failed');
-//                 });
-//             }
-//             else {
-//                 socket.join(chat.uid);
-//             }
+                }).catch((err) => {
+                    socket.emit('chat-connection-failed');
+                });
+            }
+            else {
+                socket.join(chat.uid);
+            }
 
-//         }).catch((err) => {
-//             socket.emit('chat-connection-failed');
-//         });
-//     });
+        }).catch((err) => {
+            socket.emit('chat-connection-failed');
+        });
+    });
 
-//     socket.on('new msg', (msg) => {
-//         // TODO
-//     });
-// });
+    socket.on('new msg', (msg) => {
+        // TODO
+    });
+});
 
 http.listen(3000, () => { console.log("Server is running"); });

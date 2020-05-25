@@ -7,7 +7,8 @@ import {
   Text,
   TouchableOpacity,
   ImageBackground,
-  FlatList
+  FlatList,
+  AsyncStorage
 } from 'react-native';
 import CardItem from '../components/CardItem';
 import Icon from '../components/Icon';
@@ -21,7 +22,7 @@ class Matches extends React.Component {
   }
 
   async componentDidMount() {
-    const data = await this.state.fetcher.loadData("harsh@gmail.com");
+    const data = await this.state.fetcher.loadData(await AsyncStorage.getItem('storedEmail'));
     this.setState({ cards: data });
   }
 
@@ -52,7 +53,6 @@ class Matches extends React.Component {
                     image={ { uri: item.image } }
                     name={item.name}
                     status={'Online'}
-                    matchesPage={true}
                     variant
                   />
                 </TouchableOpacity>
