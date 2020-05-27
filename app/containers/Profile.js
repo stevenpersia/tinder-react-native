@@ -44,7 +44,9 @@ class Profile extends React.Component {
   }
 
   async componentDidMount() {
-    let user = await this.state.fetcher.fetchUser(await AsyncStorage.getItem('storedEmail'));
+    let user = await this.state.fetcher.fetchUser(
+      await AsyncStorage.getItem('storedEmail')
+    );
     this.setState({ profile: user[0] });
   }
 
@@ -58,10 +60,11 @@ class Profile extends React.Component {
     const email = this.state.profile ? this.state.profile.email : '';
 
     return (
-      <ImageBackground
-        style={styles.headerBackground}
-        source={require('../assets/images/t1.jpg')}
-      >
+      <View style={styles.headerBackground}>
+        <Image
+          source={require('../assets/images/Findr_logo2x.png')}
+          style={styles.homeicon}
+        />
         <View style={styles.header}>
           <View style={styles.profilepicWrap}>
             <Image style={styles.profilepic} source={image} />
@@ -87,7 +90,7 @@ class Profile extends React.Component {
             <Text style={styles.textButton}>Update Profile</Text>
           </TouchableOpacity>
         </View>
-      </ImageBackground>
+      </View>
     );
   }
 }
@@ -98,19 +101,20 @@ const styles = StyleSheet.create({
     width: DIMENSION_WIDTH,
     height: DIMENSION_HEIGHT,
     alignSelf: 'stretch',
+    backgroundColor: 'rgba(26, 93, 87, 0.15)',
   },
   header: {
     flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
     padding: 20,
-    backgroundColor: 'rgba(0,0,0,0.5)',
+    backgroundColor: 'rgba(26, 93, 87, 0.15)',
   },
   profilepicWrap: {
     width: 240,
     height: 240,
     borderRadius: 100,
-    borderColor: 'rgba(0,0,0,0.4)',
+    borderColor: 'rgba(26, 93, 87, 0.15)',
     borderWidth: 16,
   },
   profilepic: {
@@ -183,6 +187,7 @@ const styles = StyleSheet.create({
     fontWeight: '300',
     fontStyle: 'italic',
   },
+  homeicon: {},
 });
 
 export default Profile;
