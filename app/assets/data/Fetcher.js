@@ -1,5 +1,5 @@
-const ENDPOINT = 'http://localhost'; // goes to localhost from avd
-const PORT = 3000;
+const ENDPOINT = 'http://dev.findrapp.ca'; // goes to localhost from avd
+const PORT = 80;
 
 class Fetcher {
   // need to add credentials to log-in to the backend server
@@ -35,38 +35,48 @@ class Fetcher {
   }
 
   async requestSignUp(data) {
-    return (await fetch(this.ENDPOINT + ":" + String(this.PORT) + "/new-user", {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(data)
-    })).status;
-
+    return (
+      await fetch(this.ENDPOINT + ':' + String(this.PORT) + '/new-user', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(data),
+      })
+    ).status;
   }
 
   async logIn(data) {
-    let logInRes = (await (fetch(this.ENDPOINT + ":" + String(this.PORT) + "/login", {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(data)
-    })));
+    let logInRes = await fetch(
+      this.ENDPOINT + ':' + String(this.PORT) + '/login',
+      {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(data),
+      }
+    );
 
-    if(logInRes.status !== 200) {
+    if (logInRes.status !== 200) {
       return { success: false, user: null };
     }
 
     let user = await logInRes.json();
-    return { success: true, user }
+    return { success: true, user };
   }
 
-  async fetchCards(email) {        
-    return await (await fetch(this.ENDPOINT + ":" + String(this.PORT) 
-    + "/fetchProfileCards?email=" + email)).json();
+  async fetchCards(email) {
+    return await (
+      await fetch(
+        this.ENDPOINT +
+          ':' +
+          String(this.PORT) +
+          '/fetchProfileCards?email=' +
+          email
+      )
+    ).json();
   }
-
 
   async fetchUser(email) {
     return await (

@@ -11,6 +11,7 @@ import {
   Image,
   AppRegistry,
   Dimensions,
+  AsyncStorage,
 } from 'react-native';
 import ProfileItem from '../components/ProfileItem';
 import Icon from '../components/Icon';
