@@ -1,15 +1,12 @@
 import React from 'react';
-// import styles from '../assets/styles';
+import globalStyles from '../assets/styles';
 
 import {
-  ScrollView,
   View,
   Text,
-  ImageBackground,
   TouchableOpacity,
   StyleSheet,
   Image,
-  AppRegistry,
   Dimensions,
   AsyncStorage,
 } from 'react-native';
@@ -63,7 +60,7 @@ class Profile extends React.Component {
       <View style={styles.headerBackground}>
         <Image
           source={require('../assets/images/Findr_logo2x.png')}
-          style={styles.homeicon}
+          style={globalStyles.profileLogo}
         />
         <View style={styles.header}>
           <View style={styles.profilepicWrap}>
@@ -87,7 +84,7 @@ class Profile extends React.Component {
             <Text style={styles.iconButton}>
               <Icon name='optionsH' />
             </Text>
-            <Text style={styles.textButton}>Update Profile</Text>
+            <Text style={styles.textButton}>  Update Profile</Text>
           </TouchableOpacity>
         </View>
       </View>
@@ -108,14 +105,16 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     padding: 20,
-    backgroundColor: 'rgba(26, 93, 87, 0.15)',
+    // backgroundColor: 'rgba(26, 93, 87, 0.15)',
   },
   profilepicWrap: {
     width: 240,
     height: 240,
     borderRadius: 100,
     borderColor: 'rgba(26, 93, 87, 0.15)',
-    borderWidth: 16,
+    // borderWidth: 16,
+    marginBottom: 160,
+    elevation: 10
   },
   profilepic: {
     flex: 1,
@@ -123,7 +122,7 @@ const styles = StyleSheet.create({
     alignSelf: 'stretch',
     borderRadius: 100,
     borderColor: '#fff',
-    borderWidth: 4,
+    borderWidth: 4
   },
   containerProfile: { marginHorizontal: 0 },
   photo: {
@@ -148,12 +147,13 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     flexDirection: 'row',
     alignItems: 'center',
+    marginBottom: 10,
   },
-  iconButton: { fontFamily: ICON_FONT, fontSize: 20, color: WHITE },
+  iconButton: { fontFamily: ICON_FONT, fontSize: 20, color: '#1a5d57' },
   textButton: {
     fontFamily: ICON_FONT,
     fontSize: 15,
-    color: WHITE,
+    color: '#1a5d57',
     paddingLeft: 5,
   },
   circledButton: {
@@ -172,8 +172,9 @@ const styles = StyleSheet.create({
     marginLeft: 10,
     height: 50,
     borderRadius: 25,
-    backgroundColor: '#1a5d57',
+    backgroundColor: WHITE,
     paddingHorizontal: 20,
+    elevation: 10
   },
   name: {
     marginTop: 20,

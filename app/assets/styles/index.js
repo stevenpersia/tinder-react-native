@@ -6,6 +6,7 @@ const WHITE = '#FFFFFF';
 const GRAY = '#757E90';
 const DARK_GRAY = '#363636';
 const BLACK = '#000000';
+const TEAL = '#1a5d57';
 
 const ONLINE_STATUS = '#46A575';
 const OFFLINE_STATUS = '#D04949';
@@ -197,6 +198,7 @@ export default StyleSheet.create({
     shadowRadius: 10,
     shadowColor: BLACK,
     shadowOffset: { height: 0, width: 0 },
+    elevation: 8
   },
   matchesProfileItem: {
     width: 131,
@@ -215,7 +217,7 @@ export default StyleSheet.create({
   name: {
     paddingTop: 25,
     paddingBottom: 5,
-    color: DARK_GRAY,
+    color: TEAL,
     fontSize: 15,
     textAlign: 'center',
   },
@@ -240,6 +242,13 @@ export default StyleSheet.create({
     color: GRAY,
     fontSize: 13,
   },
+  profileLogo: {
+		width: 75,
+		height: 70,
+		// padding: 3,
+		marginLeft: 180,
+		marginTop: 20,
+	},
 
   // CONTAINER - GENERAL
   bg: {
