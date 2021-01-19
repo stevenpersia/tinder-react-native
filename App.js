@@ -1,6 +1,7 @@
 import React from "react";
 import { Text } from "react-native";
-import { createBottomTabNavigator, createAppContainer } from "react-navigation";
+import { createBottomTabNavigator} from "react-navigation-tabs";
+import { createAppContainer } from "react-navigation";
 import styles from "./assets/styles";
 import HomeScreen from "./containers/Home";
 import MatchesScreen from "./containers/Matches";

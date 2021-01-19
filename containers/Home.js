@@ -8,6 +8,7 @@ import styles from '../assets/styles';
 import Demo from '../assets/data/demo.js';
 
 const Home = () => {
+  const swiper = null
   return (
     <ImageBackground
       source={require('../assets/images/bg.png')}
@@ -23,7 +24,7 @@ const Home = () => {
           loop={true}
           verticalSwipe={false}
           renderNoMoreCards={() => null}
-          ref={swiper => (this.swiper = swiper)}
+          ref={ swiper }
         >
           {Demo.map((item, index) => (
             <Card key={index}>
