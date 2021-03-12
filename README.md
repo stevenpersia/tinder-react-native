@@ -21,6 +21,10 @@
 
 ## Overview
 
+⚠️ **This repository is not maintain anymore. I've made another repository of this project on Expo (and with Typescript) : https://github.com/stevenpersia/tinder-expo.**
+
+👏 **Thank you for your stars, your issues and your pull requests. I really love open source community.** ❤️
+
 **Perfect to start an Tinder Clone app.** 4 screens are availables : Explore, Matches, Messages and Profile. You'll find some components like Card Component to pass props and variant. No frameworks UI like Bootstrap or Material UI are used.
 
 More features will be added to the project in the future.
