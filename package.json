@@ -13,7 +13,7 @@
 	},
 	"dependencies": {
 		"react": "16.6.3",
-		"react-native": "^0.59.9",
+		"react-native": "^0.71.3",
 		"react-native-card-stack-swiper": "^1.1.0",
 		"react-native-gesture-handler": "^1.0.12",
 		"react-navigation": "^3.0.9"
