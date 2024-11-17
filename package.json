@@ -13,14 +13,14 @@
 	},
 	"dependencies": {
 		"react": "16.6.3",
-		"react-native": "^0.59.9",
+		"react-native": "^0.76.2",
 		"react-native-card-stack-swiper": "^1.1.0",
 		"react-native-gesture-handler": "^1.0.12",
 		"react-navigation": "^3.0.9"
 	},
 	"devDependencies": {
-		"babel-jest": "^24.8.0",
-		"eslint": "^6.6.0",
+		"babel-jest": "^29.7.0",
+		"eslint": "^9.15.0",
 		"eslint-config-standard": "^14.1.0",
 		"eslint-plugin-import": "^2.18.2",
 		"eslint-plugin-node": "^10.0.0",
